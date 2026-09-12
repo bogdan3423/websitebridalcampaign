@@ -36,7 +36,7 @@ Pentru trimitere directă, configurați `site.formEndpoint` cu un endpoint HTTPS
 
 ## Imagini
 
-Fotografii de referință din Pexels, licențiate conform https://www.pexels.com/license/. Sursele și fotografii sunt documentați în `data/image-sources.json`. Nu reprezintă clienți sau campanii ale agenției. Imaginile sunt comprimate WebP înainte de build, utilizate prin `next/image`, cu dimensiuni rezervate și încărcare lazy sub primul ecran. Exportul static nu utilizează optimizare la cerere pe server.
+Fotografii de referință din Pexels, licențiate conform https://www.pexels.com/license/. Sursele și fotografii sunt documentați în `data/image-sources.json`. Nu reprezintă clienți sau campanii ale agenției. Scriptul `scripts/optimize-images.mjs` generează automat cinci variante WebP pentru fiecare fotografie înainte de dev/build. Imaginile sunt comprimate WebP înainte de build, utilizate prin `next/image`, cu dimensiuni rezervate și încărcare lazy sub primul ecran. Exportul static nu utilizează optimizare la cerere pe server.
 
 ## Publicare
 

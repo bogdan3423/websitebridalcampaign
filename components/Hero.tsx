@@ -38,7 +38,8 @@ export function Hero() {
             alt={heroImage.alt}
             fill
             sizes="(max-width: 767px) 100vw, 49vw"
-            priority
+            loading="eager"
+            fetchPriority="high"
           />
           <span className="photo-tag">
             O NOUĂ PERSPECTIVĂ
