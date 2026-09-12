@@ -101,7 +101,7 @@ export function ContactForm() {
               type="tel"
               autoComplete="tel"
               required
-              pattern="[+0-9() .\-]{7,25}"
+              pattern="[+]?[0-9][0-9 ]{5,22}[0-9]"
               title="Introdu un număr de telefon valid (7–25 caractere)."
               maxLength={25}
               placeholder="07xx xxx xxx"

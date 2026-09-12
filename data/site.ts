@@ -7,7 +7,7 @@ export const site = {
   instagram: "", // URL complet
   email: "",
   formEndpoint: "", // Endpoint HTTPS care acceptă POST JSON. Lăsați gol pentru WhatsApp / email.
-  url: "https://bridal-growth-cluj.fabled-slug-9772.chatgpt.site",
+  url: "https://bridal-growth-cluj.rusbogdan3423.chatgpt.site",
 };
 export function whatsappUrl(
   message = "Bună! Aș vrea să discutăm despre o campanie bridal.",

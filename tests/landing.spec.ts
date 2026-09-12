@@ -61,6 +61,12 @@ test("formularul validează și pregătește mesajul corect", async ({ page }) =
   await expect(page.locator(".form-status")).toHaveCount(0);
   await page.getByLabel("Nume", { exact: false }).fill("Test local");
   await page.getByLabel("Salon", { exact: false }).fill("Salon de test");
+  await page.getByLabel("Telefon", { exact: false }).fill("numar invalid");
+  expect(
+    await page
+      .getByLabel("Telefon", { exact: false })
+      .evaluate((input: HTMLInputElement) => input.checkValidity()),
+  ).toBe(false);
   await page.getByLabel("Telefon", { exact: false }).fill("0748030566");
   await page.getByLabel("Pachet de interes").selectOption("premium");
   await page
