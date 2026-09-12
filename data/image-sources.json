@@ -1,0 +1,92 @@
+[
+  {
+    "file": "27910030.jpg",
+    "role": "hero-satin",
+    "photographer": "Emine Gizem",
+    "source": "https://www.pexels.com/photo/a-woman-in-a-white-wedding-dress-poses-for-a-photo-27910030/",
+    "image": "https://images.pexels.com/photos/27910030/pexels-photo-27910030.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Portrait of bride in satin gown against dark curtains",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "35865064.jpg",
+    "role": "moody-portrait",
+    "photographer": "Alexander Mass",
+    "source": "https://www.pexels.com/photo/elegant-bride-in-white-gown-with-veil-35865064/",
+    "image": "https://images.pexels.com/photos/35865064/pexels-photo-35865064.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Seated bride in veil with dark interior",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "34328152.jpg",
+    "role": "veil-portrait",
+    "photographer": "Alexander Mass",
+    "source": "https://www.pexels.com/photo/elegant-bride-in-white-wedding-veil-portrait-34328152/",
+    "image": "https://images.pexels.com/photos/34328152/pexels-photo-34328152.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Bride looking down under ivory veil",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "19432584.jpg",
+    "role": "editorial-veil",
+    "photographer": "Daniil Kondrashin",
+    "source": "https://www.pexels.com/photo/bride-in-wedding-dress-sitting-and-holding-veil-19432584/",
+    "image": "https://images.pexels.com/photos/19432584/pexels-photo-19432584.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Fashion portrait of bride holding translucent veil",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "5646476.jpg",
+    "role": "lace-portrait",
+    "photographer": "HONG SON",
+    "source": "https://www.pexels.com/photo/a-beautiful-bride-wearing-white-gown-and-veil-5646476/",
+    "image": "https://images.pexels.com/photos/5646476/pexels-photo-5646476.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Bride in lace gown in bright interior",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "11961180.jpg",
+    "role": "veil-detail",
+    "photographer": "Connor Scott McManus",
+    "source": "https://www.pexels.com/photo/woman-in-white-wedding-dress-and-veil-11961180/",
+    "image": "https://images.pexels.com/photos/11961180/pexels-photo-11961180.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Rear view of bride adjusting veil",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "27102227.jpg",
+    "role": "lace-buttons",
+    "photographer": "Sara Er",
+    "source": "https://www.pexels.com/photo/woman-in-wedding-dress-with-lace-27102227/",
+    "image": "https://images.pexels.com/photos/27102227/pexels-photo-27102227.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Close detail of lace sleeves and back buttons",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "15045864.jpg",
+    "role": "lace-fabric",
+    "photographer": "Brunxs",
+    "source": "https://www.pexels.com/photo/close-up-of-bride-in-wedding-dress-15045864/",
+    "image": "https://images.pexels.com/photos/15045864/pexels-photo-15045864.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Close detail of lace gown and bouquet",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "32854448.jpg",
+    "role": "venue-landscape",
+    "photographer": "The Visionary Vows",
+    "source": "https://www.pexels.com/photo/elegant-outdoor-wedding-venue-with-ceremony-setup-32854448/",
+    "image": "https://images.pexels.com/photos/32854448/pexels-photo-32854448.jpeg?auto=compress&cs=tinysrgb&w=1800&q=88",
+    "alt": "Outdoor ceremony aisle leading to elegant villa",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/"
+  }
+]

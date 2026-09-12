@@ -1,0 +1,58 @@
+"use client";
+import { useRef } from "react";
+import { Brand } from "./Brand";
+import { navigation } from "@/data/site";
+export function Navbar() {
+  const dialog = useRef<HTMLDialogElement>(null);
+  function close() {
+    dialog.current?.close();
+  }
+  return (
+    <header className="navbar">
+      <Brand />
+      <nav className="desktop-nav" aria-label="Navigare principală">
+        {navigation.map(([label, href]) => (
+          <a key={href} href={href}>
+            {label}
+          </a>
+        ))}
+      </nav>
+      <a className="nav-cta" href="#contact">
+        Discutăm? <span aria-hidden="true">↗</span>
+      </a>
+      <button
+        className="menu-toggle"
+        aria-label="Deschide meniul"
+        onClick={() => dialog.current?.showModal()}
+      >
+        <span />
+        <span />
+      </button>
+      <dialog
+        ref={dialog}
+        className="mobile-menu"
+        aria-label="Meniu de navigare"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) close();
+        }}
+      >
+        <div className="menu-top">
+          <Brand />
+          <button onClick={close} aria-label="Închide meniul">
+            Închide ×
+          </button>
+        </div>
+        <nav>
+          {navigation.map(([label, href], index) => (
+            <a key={href} href={href} onClick={close}>
+              <small>0{index + 1}</small>
+              {label}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </nav>
+        <p>Cluj-Napoca · Campanii Bridal 2026/27</p>
+      </dialog>
+    </header>
+  );
+}
