@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f6f2ec;
-  --surface: #fffdf9;
-  --ink: #24191b;
-  --wine: #4a1624;
-  --wine-dark: #301018;
-  --rose: #ead8d5;
-  --gold: #b88755;
-  --line: #d8cec6;
-  --muted: #6b6060;
+  --paper: #ffffff;
+  --surface: #ffffff;
+  --ink: #111111;
+  --wine: #111111;
+  --wine-dark: #000000;
+  --rose: #f4f4f4;
+  --gold: #111111;
+  --line: #d7d7d7;
+  --muted: #5d5d5d;
   --font-sans: var(--font-functional);
   --font-serif: var(--font-editorial);
 }
@@ -238,7 +238,7 @@ em {
 }
 
 .mobile-menu::backdrop {
-  background: rgb(36 25 27 / 55%);
+  background: rgb(0 0 0 / 55%);
 }
 
 .menu-top {
@@ -403,7 +403,7 @@ em {
 .hero-visual::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 65%, rgb(30 10 15 / 58%));
+  background: linear-gradient(180deg, transparent 65%, rgb(0 0 0 / 62%));
   content: "";
 }
 
@@ -484,7 +484,7 @@ em {
 }
 
 .included-strip li span {
-  color: #e5be91;
+  color: #ffffff;
 }
 
 .pricing-grid {
@@ -512,7 +512,7 @@ em {
   color: #fff;
   border-color: var(--wine);
   background: var(--wine);
-  box-shadow: 0 18px 42px rgb(48 16 24 / 18%);
+  box-shadow: 0 18px 42px rgb(0 0 0 / 18%);
 }
 
 .package-topline {
@@ -530,13 +530,13 @@ em {
 .package-recommended .package-description,
 .package-recommended .package-features dt,
 .package-recommended .package-features small {
-  color: #ead9d8;
+  color: #d0d0d0;
 }
 
 .package-topline strong {
   padding: 2px 8px;
   color: var(--wine);
-  background: #f0d8bb;
+  background: #ffffff;
   font-size: 0.68rem;
 }
 
@@ -591,7 +591,7 @@ em {
 
 .package-recommended .button:hover {
   color: var(--wine-dark);
-  background: #f5e9e7;
+  background: #eeeeee;
 }
 
 .package-features {
@@ -662,7 +662,7 @@ em {
 
 .process-heading .eyebrow {
   margin-bottom: 28px;
-  color: #d5a877;
+  color: #bdbdbd;
 }
 
 .process-heading h2 {
@@ -670,7 +670,7 @@ em {
 }
 
 .process-heading em {
-  color: #d9aeb0;
+  color: #ffffff;
 }
 
 .process-grid {
@@ -688,7 +688,7 @@ em {
 }
 
 .process-number {
-  color: #d5a877;
+  color: #bdbdbd;
   font-family: var(--font-editorial), Georgia, serif;
   font-size: 1.3rem;
 }
@@ -701,7 +701,7 @@ em {
 }
 
 .process-grid p {
-  color: #d8cccc;
+  color: #c9c9c9;
   font-size: 0.9rem;
 }
 
@@ -727,7 +727,7 @@ em {
 .final-heading > p:last-child {
   max-width: 610px;
   margin-top: 25px;
-  color: #564849;
+  color: #4f4f4f;
 }
 
 .contact-form-area {
@@ -747,7 +747,7 @@ em {
 }
 
 .contact-form-intro .eyebrow {
-  color: #d5a877;
+  color: #bdbdbd;
 }
 
 .contact-form-intro h3 {
@@ -760,13 +760,13 @@ em {
 }
 
 .contact-form-intro h3 em {
-  color: #d9aeb0;
+  color: #ffffff;
 }
 
 .contact-form-intro > p {
   max-width: 38ch;
   margin-top: 24px;
-  color: #e0d2d2;
+  color: #d0d0d0;
 }
 
 .contact-phone {
@@ -791,13 +791,13 @@ em {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  color: #e6dada;
+  color: #dddddd;
   font-size: 0.78rem;
   font-weight: 650;
 }
 
 .form-fields label > span {
-  color: #e3b781;
+  color: #ffffff;
 }
 
 .form-fields .field-full {
@@ -835,7 +835,7 @@ select option {
 input:focus,
 select:focus,
 textarea:focus {
-  border-bottom-color: #e3b781;
+  border-bottom-color: #ffffff;
 }
 
 .form-bottom {
@@ -848,7 +848,7 @@ textarea:focus {
 
 .form-bottom > p {
   max-width: 280px;
-  color: #cdbcbc;
+  color: #bdbdbd;
   font-size: 0.75rem;
 }
 
@@ -859,14 +859,14 @@ textarea:focus {
 }
 
 .button-light:hover {
-  background: #f4e8e7;
+  background: #eeeeee;
 }
 
 .form-status {
   margin-top: 28px;
   padding: 20px;
   color: var(--ink);
-  background: #f3dfcf;
+  background: #ffffff;
 }
 
 .form-status h4 {
@@ -884,7 +884,7 @@ textarea:focus {
 .footer {
   padding: 46px clamp(22px, 4.5vw, 72px) 26px;
   color: #fff;
-  background: #1d1013;
+  background: #000000;
 }
 
 .footer-main,
@@ -900,7 +900,7 @@ textarea:focus {
 }
 
 .footer-main > p {
-  color: #bfaeb0;
+  color: #bdbdbd;
   font-size: 0.84rem;
 }
 
@@ -918,7 +918,7 @@ textarea:focus {
 .footer-bottom {
   padding-top: 24px;
   border-top: 1px solid rgb(255 255 255 / 20%);
-  color: #9f9192;
+  color: #a8a8a8;
   font-size: 0.75rem;
 }
 
@@ -1161,7 +1161,7 @@ textarea:focus {
     padding: 13px 17px;
     color: #fff;
     background: var(--wine);
-    box-shadow: 0 10px 30px rgb(48 16 24 / 25%);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 25%);
     font-size: 0.84rem;
     font-weight: 700;
   }
