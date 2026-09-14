@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { Services } from "@/components/Services";
 import { Pricing } from "@/components/Pricing";
 import { Process } from "@/components/Process";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -29,6 +30,7 @@ export default function Home() {
       <Navbar />
       <main id="continut">
         <Hero />
+        <Services />
         <Pricing />
         <Process />
         <FinalCTA />

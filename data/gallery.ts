@@ -27,7 +27,7 @@ export const gallery = [
   },
   {
     src: "/images/veil.webp",
-    alt: "Portret delicat de mireasă acoperită de un voal ivory",
+    alt: "Portret delicat de mireasă acoperită de un voal în nuanța fildeșului",
     label: "05 / Lumină & emoție",
     className: "gallery-forty",
   },
