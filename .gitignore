@@ -43,3 +43,7 @@ next-env.d.ts
 # browser verification
 /test-results/
 /playwright-report/
+
+# surse foto locale și variante generate la construire
+/poze_website_bridal/
+/public/images/portfolio/responsive/

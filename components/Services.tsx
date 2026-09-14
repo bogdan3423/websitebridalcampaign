@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { gallery } from "@/data/gallery";
+import { PortfolioGallery } from "./PortfolioGallery";
 
 const proofPoints = [
   "Un singur punct de contact",
@@ -84,33 +85,18 @@ export function Services() {
 
         <div className="portfolio-area">
           <div className="portfolio-heading">
-            <p>Exemple de direcție vizuală</p>
-            <span>06 imagini</span>
+            <p>Selecție din portofoliu</p>
+            <span>{gallery.length} fotografii</span>
           </div>
-          <div className="portfolio-gallery">
-            {gallery.slice(0, 6).map((photo, index) => (
-              <figure
-                className={`portfolio-image portfolio-image-${index + 1}`}
-                key={photo.src}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(max-width: 800px) 50vw, 30vw"
-                />
-                <figcaption>{photo.label.replace("&", "și")}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <PortfolioGallery />
         </div>
       </article>
 
       <article className="service-story video-story">
         <figure className="service-visual">
           <Image
-            src={gallery[6].src}
-            alt={gallery[6].alt}
+            src={gallery[62].src}
+            alt={gallery[62].alt}
             fill
             sizes="(max-width: 800px) 100vw, 43vw"
           />
@@ -174,8 +160,8 @@ export function Services() {
       <article className="service-story catalog-story">
         <figure className="service-visual">
           <Image
-            src={gallery[4].src}
-            alt={gallery[4].alt}
+            src={gallery[41].src}
+            alt={gallery[41].alt}
             fill
             sizes="(max-width: 800px) 100vw, 43vw"
           />

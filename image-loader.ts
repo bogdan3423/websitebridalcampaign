@@ -8,6 +8,10 @@ export default function imageLoader({ src, width }: ImageLoaderProps) {
     .split("/")
     .pop()!
     .replace(/\.[^.]+$/, "");
+  if (src.startsWith("/images/portfolio/")) {
+    const size = [480, 900, 1600].find((value) => value >= width) ?? 1600;
+    return `/images/portfolio/responsive/${name}-${size}.webp`;
+  }
   const size =
     [320, 480, 768, 1200, 1600].find((value) => value >= width) ?? 1600;
   return `/images/responsive/${name}-${size}.webp`;
