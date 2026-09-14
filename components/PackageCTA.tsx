@@ -16,7 +16,7 @@ export function PackageCTA({
         window.dispatchEvent(new CustomEvent("select-package", { detail: id }))
       }
     >
-      Aleg {name}
+      Vreau pachetul {name}
       <span aria-hidden="true">↗</span>
     </a>
   );

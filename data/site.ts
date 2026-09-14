@@ -10,16 +10,14 @@ export const site = {
   url: "https://bridal-growth-cluj.rusbogdan3423.chatgpt.site",
 };
 export function whatsappUrl(
-  message = "Bună! Aș vrea să discutăm despre o campanie bridal.",
+  message = "Bună! Aș vrea să discutăm despre promovarea salonului meu.",
 ) {
   return site.whatsapp
     ? `https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`
     : "#contact";
 }
 export const navigation = [
-  ["Servicii", "#servicii"],
   ["Pachete", "#pachete"],
-  ["Galerie", "#galerie"],
-  ["Proces", "#proces"],
+  ["Cum lucrăm", "#proces"],
   ["Contact", "#contact"],
 ] as const;

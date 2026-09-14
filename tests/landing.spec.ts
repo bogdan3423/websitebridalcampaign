@@ -16,11 +16,6 @@ for (const width of [375, 430, 768, 1024, 1440]) {
       await expect(
         page.locator(".package-price").filter({ hasText: price }),
       ).toBeVisible();
-    await page.locator("#galerie").scrollIntoViewIfNeeded();
-    await expect(page.locator(".gallery-image img").first()).toHaveJSProperty(
-      "complete",
-      true,
-    );
     await page.locator("#pachete").scrollIntoViewIfNeeded();
     await page.screenshot({ path: `/tmp/bridal-${width}-pricing.png` });
     await page.evaluate(() => window.scrollTo(0, 0));
@@ -28,18 +23,6 @@ for (const width of [375, 430, 768, 1024, 1440]) {
     expect(errors).toEqual([]);
   });
 }
-test("galerie: deschidere, săgeți și Escape", async ({ page }) => {
-  await page.goto("/");
-  await page.locator(".gallery-image").first().click();
-  await expect(page.locator(".lightbox")).toBeVisible();
-  await page.keyboard.press("ArrowRight");
-  await expect(page.locator(".lightbox-top")).toContainText("02 / 08");
-  await page.getByRole("button", { name: "Fotografia precedentă" }).click();
-  await expect(page.locator(".lightbox-top")).toContainText("01 / 08");
-  await page.keyboard.press("Escape");
-  await expect(page.locator(".lightbox")).not.toBeVisible();
-  await expect(page.locator(".gallery-image").first()).toBeFocused();
-});
 test("meniul mobil și alegerea pachetului", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
@@ -52,8 +35,8 @@ test("meniul mobil și alegerea pachetului", async ({ page }) => {
     .getByRole("link", { name: "Pachete" })
     .click();
   await expect(page.locator(".mobile-menu")).not.toBeVisible();
-  await page.getByRole("link", { name: "Aleg Plus" }).click();
-  await expect(page.getByLabel("Pachet de interes")).toHaveValue("plus");
+  await page.getByRole("link", { name: "Vreau pachetul Complet" }).click();
+  await expect(page.getByLabel("Pachet de interes")).toHaveValue("complet");
 });
 test("formularul validează și pregătește mesajul corect", async ({ page }) => {
   await page.goto("/");
@@ -68,7 +51,7 @@ test("formularul validează și pregătește mesajul corect", async ({ page }) =
       .evaluate((input: HTMLInputElement) => input.checkValidity()),
   ).toBe(false);
   await page.getByLabel("Telefon", { exact: false }).fill("0748030566");
-  await page.getByLabel("Pachet de interes").selectOption("premium");
+  await page.getByLabel("Pachet de interes").selectOption("extins");
   await page
     .getByLabel("Mesaj", { exact: true })
     .fill("Verificare locală, nu trimite.");
@@ -80,13 +63,15 @@ test("formularul validează și pregătește mesajul corect", async ({ page }) =
     .getByRole("link", { name: "Continuă în WhatsApp" })
     .getAttribute("href");
   expect(href).toContain("https://wa.me/40748030566?text=");
-  expect(decodeURIComponent(href!)).toContain("Pachet: premium");
+  expect(decodeURIComponent(href!)).toContain("Pachet: extins");
   expect(decodeURIComponent(href!)).toContain("Salon de test");
 });
 test("accesibilitate și metadate", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "ro");
-  await expect(page).toHaveTitle(/Marketing pentru saloane/);
+  await expect(page).toHaveTitle(/Promovare pentru saloane/);
+  const text = await page.locator("body").innerText();
+  expect(text).not.toMatch(/\b(Reels|Stories|Hero|BTS|CTA|content|marketing|bridal|feed|lookbook)\b/i);
   const results = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();

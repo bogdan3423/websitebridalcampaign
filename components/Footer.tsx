@@ -23,9 +23,9 @@ export function Footer() {
           © {new Date().getFullYear()} {site.name}. Toate drepturile rezervate.
         </p>
         <nav aria-label="Navigare subsol">
-          <a href="#servicii">Servicii</a>
           <a href="#pachete">Pachete</a>
-          <a href="#galerie">Galerie</a>
+          <a href="#proces">Cum lucrăm</a>
+          <a href="#contact">Contact</a>
         </nav>
         <a href="#" className="back-top">
           Înapoi sus ↑

@@ -26,7 +26,7 @@ export function ContactForm() {
     const values = Object.fromEntries(
       new FormData(event.currentTarget).entries(),
     );
-    const text = `Bună! Aș vrea să discutăm despre o campanie bridal.\n\nNume: ${values.name}\nSalon: ${values.salon}\nTelefon: ${values.phone}\nInstagram / Website: ${values.website || "—"}\nPachet: ${values.package || "Aș dori o recomandare"}\nMesaj: ${values.message || "—"}`;
+    const text = `Bună! Aș vrea să discutăm despre promovarea salonului meu.\n\nNume: ${values.name}\nSalon: ${values.salon}\nTelefon: ${values.phone}\nInstagram / site: ${values.website || "—"}\nPachet: ${values.package || "Aș dori o recomandare"}\nMesaj: ${values.message || "—"}`;
     if (site.formEndpoint) {
       setState("sending");
       try {
@@ -53,14 +53,14 @@ export function ContactForm() {
   return (
     <div className="contact-form-area" id="contact">
       <div className="contact-form-intro">
-        <span className="eyebrow">SĂ VORBIM DESPRE SALONUL TĂU</span>
+        <span className="eyebrow">RĂSPUNDEM CU DRAG</span>
         <h3 className="display">
-          Începem cu
+          Spune-ne câteva
           <br />
-          <em>o conversație.</em>
+          <em>lucruri despre salon.</em>
         </h3>
         <p>
-          Spune-ne ce colecție pregătești. Alegem împreună pachetul potrivit.
+          Te contactăm pentru a înțelege ce ai nevoie și pentru a stabili toate detaliile.
         </p>
         <a className="contact-phone" href={`tel:+${site.whatsapp}`}>
           {site.phoneDisplay} <span aria-hidden="true">↗</span>
@@ -108,11 +108,11 @@ export function ContactForm() {
             />
           </label>
           <label>
-            Instagram / Website
+            Instagram / site
             <input
               name="website"
               maxLength={250}
-              placeholder="@salon sau website.ro"
+              placeholder="@salon sau adresa site-ului"
             />
           </label>
           <label className="field-full">

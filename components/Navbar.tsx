@@ -18,7 +18,7 @@ export function Navbar() {
         ))}
       </nav>
       <a className="nav-cta" href="#contact">
-        Discutăm? <span aria-hidden="true">↗</span>
+        Cere o recomandare <span aria-hidden="true">↗</span>
       </a>
       <button
         className="menu-toggle"
@@ -51,7 +51,7 @@ export function Navbar() {
             </a>
           ))}
         </nav>
-        <p>Cluj-Napoca · Campanii Bridal 2026/27</p>
+        <p>Cluj-Napoca · Promovare pentru saloane de rochii de mireasă</p>
       </dialog>
     </header>
   );

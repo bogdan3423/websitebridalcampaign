@@ -1,12 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { SeasonalTimeline } from "@/components/SeasonalTimeline";
-import { Services } from "@/components/Services";
-import { VideoFormats } from "@/components/VideoFormats";
-import { EditorialGallery } from "@/components/EditorialGallery";
-import { SocialMediaSystem } from "@/components/SocialMediaSystem";
 import { Pricing } from "@/components/Pricing";
-import { BridalEditorial } from "@/components/BridalEditorial";
 import { Process } from "@/components/Process";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
@@ -19,7 +13,7 @@ export default function Home() {
     url: site.url,
     telephone: `+${site.whatsapp}`,
     description:
-      "Campanii de fotografie editorială, Reels și social media pentru saloane de rochii de mireasă.",
+      "Fotografiere, filmare și pregătirea postărilor pentru saloane de rochii de mireasă.",
     areaServed: { "@type": "City", name: "Cluj-Napoca" },
     ...(site.email ? { email: site.email } : {}),
     ...(site.instagram ? { sameAs: [site.instagram] } : {}),
@@ -35,13 +29,7 @@ export default function Home() {
       <Navbar />
       <main id="continut">
         <Hero />
-        <SeasonalTimeline />
-        <Services />
-        <VideoFormats />
-        <EditorialGallery />
-        <SocialMediaSystem />
         <Pricing />
-        <BridalEditorial />
         <Process />
         <FinalCTA />
       </main>
