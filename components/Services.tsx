@@ -19,7 +19,7 @@ const videoDetails = [
   "Rochia prezentată în mișcare",
   "Detalii văzute de aproape",
   "Sfaturi oferite de consultantul salonului",
-  "Filme care invită mireasa la programarea unei probe",
+  "Videoclipuri care invită mireasa la programarea unei probe",
 ];
 
 const promotionDetails = [
@@ -117,16 +117,16 @@ export function Services() {
           <figcaption>Rochia în mișcare și detaliile ei</figcaption>
         </figure>
         <div className="service-copy">
-          <p className="service-index">02 / FILMARE</p>
+          <p className="service-index">02 / VIDEOCLIPURI</p>
           <h3>
-            Filme scurte,
+            Videoclipuri scurte,
             <br />
             <em>fiecare cu un scop.</em>
           </h3>
           <p>
             Nu repetăm același cadru de mai multe ori. Pregătim tipuri diferite
-            de filme, astfel încât salonul să poată prezenta, explica și invita
-            viitoarea mireasă la probă.
+            de videoclipuri pentru rețelele sociale, astfel încât salonul să
+            poată prezenta, explica și invita viitoarea mireasă la probă.
           </p>
           <ul>
             {videoDetails.map((detail) => (
@@ -146,7 +146,7 @@ export function Services() {
           </h3>
           <p>
             Salonul nu primește un folder pe care trebuie să îl organizeze
-            singur. Transformăm fotografiile și filmele într-o prezență
+            singur. Transformăm fotografiile și videoclipurile într-o prezență
             consecventă, ușor de urmărit.
           </p>
           <ul>
@@ -166,7 +166,7 @@ export function Services() {
           </div>
           <div>
             <strong>10–20</strong>
-            <span>filme scurte verticale</span>
+            <span>videoclipuri scurte pentru rețelele sociale</span>
           </div>
         </div>
       </article>
@@ -203,4 +203,3 @@ export function Services() {
     </section>
   );
 }
-

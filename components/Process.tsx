@@ -9,7 +9,7 @@ const steps = [
   ],
   [
     "Primești materialele pregătite",
-    "Prelucrăm fotografiile și filmele, scriem textele și pregătim publicarea.",
+    "Prelucrăm fotografiile și videoclipurile, scriem textele și pregătim publicarea.",
   ],
 ];
 
@@ -36,4 +36,3 @@ export function Process() {
     </section>
   );
 }
-

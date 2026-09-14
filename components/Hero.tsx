@@ -13,8 +13,9 @@ export function Hero() {
           <em>O lună de materiale.</em>
         </h1>
         <p className="hero-promise">
-          Creăm pentru salonul tău fotografii, filme scurte și postări care
-          prezintă clar rochiile și invită miresele la probă.
+          Creăm pentru salonul tău fotografii, videoclipuri scurte pentru
+          rețelele sociale și postări care prezintă clar rochiile și invită
+          miresele la probă.
         </p>
         <div className="hero-actions">
           <a href="#pachete" className="button button-dark">
@@ -50,4 +51,3 @@ export function Hero() {
     </section>
   );
 }
-

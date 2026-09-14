@@ -50,14 +50,14 @@ function PackageSection({ item }: { item: Package }) {
           </dd>
         </div>
         <div>
-          <dt>Filme scurte verticale</dt>
+          <dt>Videoclipuri scurte pentru rețelele sociale</dt>
           <dd>
             <strong>{item.reels}</strong>
-            <small>pregătite pentru rețelele sociale</small>
+            <small>în format vertical</small>
           </dd>
         </div>
         <div>
-          <dt>Film principal</dt>
+          <dt>Videoclip principal</dt>
           <dd>{item.heroes}</dd>
         </div>
         <div>
@@ -127,4 +127,3 @@ export function Pricing() {
     </section>
   );
 }
-
