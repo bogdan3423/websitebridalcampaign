@@ -1,86 +1,35 @@
-const portfolioFiles = [
-  "IRI_4750",
-  "IRI_4754",
-  "IRI_4766",
-  "IRI_4772",
-  "IRI_4775",
-  "IRI_4781",
-  "IRI_4787",
-  "IRI_4789",
-  "IRI_4797",
-  "IRI_4799",
-  "IRI_4804",
-  "IRI_4813",
-  "IRI_4830",
-  "IRI_4831",
-  "IRI_4834",
-  "IRI_4838",
-  "IRI_4844",
-  "IRI_4848",
-  "IRI_4850",
-  "IRI_4980",
-  "IRI_4993",
-  "IRI_4994",
-  "IRI_4999",
-  "IRI_5048",
-  "IRI_5054",
-  "IRI_5062",
-  "IRI_5068",
-  "IRI_5082",
-  "IRI_5095",
-  "IRI_5100",
-  "IRI_5113",
-  "IRI_5115",
-  "IRI_5119",
-  "IRI_5126",
-  "IRI_5132",
-  "IRI_5158",
-  "IRI_5165",
-  "IRI_5172",
-  "IRI_5178",
-  "IRI_5187",
-  "IRI_5225",
-  "IRI_5226",
-  "IRI_5237",
-  "IRI_5276",
-  "IRI_5323",
-  "IRI_5333",
-  "IRI_5345",
-  "IRI_5372",
-  "IRI_5385",
-  "IRI_5399",
-  "IRI_5403",
-  "IRI_5418",
-  "paulabridal-10",
-  "paulabridal-12",
-  "paulabridal-18",
-  "paulabridal-20",
-  "paulabridal-22",
-  "paulabridal-24",
-  "paulabridal-29",
-  "paulabridal-3",
-  "paulabridal-33",
-  "paulabridal-35",
-  "paulabridal-36",
-  "paulabridal-40",
-  "paulabridal-41",
-  "paulabridal-43",
-  "paulabridal-45",
-  "paulabridal-46",
-  "paulabridal-48",
-  "paulabridal-49",
-  "paulabridal-5",
-  "paulabridal-7",
-  "paulabridal-8",
+const portfolioSelection = [
+  {
+    filename: "IRI_4750",
+    alt: "Modelă brunetă purtând o rochie de mireasă din satin, așezată pe trepte",
+  },
+  {
+    filename: "IRI_4994",
+    alt: "Portret editorial al unei modele blonde într-un interior elegant",
+  },
+  {
+    filename: "paulabridal-41",
+    alt: "Portret al unei modele brunete purtând voal și rochie de mireasă",
+  },
+  {
+    filename: "IRI_4993",
+    alt: "Modelă brunetă prezentând din spate o rochie de mireasă lungă",
+  },
+  {
+    filename: "IRI_5372",
+    alt: "Modelă blondă prezentând o rochie de mireasă într-un interior clasic",
+  },
+  {
+    filename: "paulabridal-35",
+    alt: "Modelă brunetă cu voal lung fotografiată pe treptele unui interior elegant",
+  },
 ] as const;
 
-const landscapeFiles = new Set(["IRI_4797", "IRI_4830", "IRI_4831"]);
-
-export const gallery = portfolioFiles.map((filename, index) => ({
-  src: `/images/portfolio/${filename}.webp`,
-  alt: `Fotografie din portofoliul pentru rochii de mireasă, cadrul ${index + 1}`,
+export const gallery = portfolioSelection.map((photo, index) => ({
+  src: `/images/portfolio/${photo.filename}.webp`,
+  alt: photo.alt,
   label: `${String(index + 1).padStart(2, "0")} / Portofoliu`,
-  className: landscapeFiles.has(filename) ? "gallery-wide" : "gallery-tall",
+  className: "gallery-tall",
 }));
 
 export const heroImage = {
@@ -88,5 +37,5 @@ export const heroImage = {
   alt: "Model purtând o rochie albă lungă pe scara unui interior elegant",
 };
 
-// Păstrat pentru componentele secundare care pot fi refolosite ulterior.
-export const feedImages = [0, 7, 22, 31, 41, 52, 62, 68, 72] as const;
+// Nouă poziții pentru previzualizarea feedului, bazate pe selecția de mai sus.
+export const feedImages = [0, 1, 2, 3, 4, 5, 0, 2, 4] as const;

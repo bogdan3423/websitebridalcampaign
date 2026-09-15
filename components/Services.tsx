@@ -95,8 +95,8 @@ export function Services() {
       <article className="service-story video-story">
         <figure className="service-visual">
           <Image
-            src={gallery[62].src}
-            alt={gallery[62].alt}
+            src={gallery[5].src}
+            alt={gallery[5].alt}
             fill
             sizes="(max-width: 800px) 100vw, 43vw"
           />
@@ -160,8 +160,8 @@ export function Services() {
       <article className="service-story catalog-story">
         <figure className="service-visual">
           <Image
-            src={gallery[41].src}
-            alt={gallery[41].alt}
+            src={gallery[1].src}
+            alt={gallery[1].alt}
             fill
             sizes="(max-width: 800px) 100vw, 43vw"
           />
