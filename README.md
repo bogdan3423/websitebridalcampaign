@@ -41,3 +41,4 @@ Fotografii de referință din Pexels, licențiate conform https://www.pexels.com
 ## Publicare
 
 `.openai/hosting.json` leagă proiectul de site-ul privat și declară exportul `out/`. Pagina poate fi găzduită și pe orice server static. Datele din formular nu necesită o bază de date.
+# websitebridalcampaign
