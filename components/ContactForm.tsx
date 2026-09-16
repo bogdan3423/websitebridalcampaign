@@ -56,12 +56,12 @@ export function ContactForm() {
   return (
     <div className="contact-form-area" id="contact">
       <div className="contact-form-intro">
-        <h2>Totul începe<br />cu o conversație.</h2>
-        <p>Spune-ne ce ai în minte. Te ajutăm să alegi pachetul potrivit.</p>
-        <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Sau scrie-ne direct pe WhatsApp <ArrowIcon /></a>
-        <a className="contact-phone" href={`tel:+${site.whatsapp}`}>
-          {site.phoneDisplay} <ArrowIcon />
-        </a>
+        <h2>Hai să vorbim.</h2>
+        <p>Despre colecția ta și cum o aducem în prim-plan.</p>
+        <div className="contact-direct">
+          <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Scrie-ne pe WhatsApp <ArrowIcon /></a>
+          <a className="contact-phone" href={`tel:+${site.whatsapp}`}>{site.phoneDisplay}</a>
+        </div>
       </div>
       <form
         className="contact-form"
@@ -78,7 +78,6 @@ export function ContactForm() {
               autoComplete="name"
               required
               maxLength={100}
-              placeholder="Numele tău"
             />
           </label>
           <label>
@@ -88,7 +87,6 @@ export function ContactForm() {
               autoComplete="organization"
               required
               maxLength={150}
-              placeholder="Numele salonului"
             />
           </label>
           <label>
@@ -106,6 +104,7 @@ export function ContactForm() {
           </label>
           <label>
             Pachet de interes
+            <span className="contact-select">
             <select
               name="package"
               value={selected}
@@ -118,10 +117,12 @@ export function ContactForm() {
                 </option>
               ))}
             </select>
+            <svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
           </label>
-          <label className="field-full">Mesaj (opțional)<textarea name="message" maxLength={2000} rows={3} placeholder="Câte rochii ai în minte? Când ai vrea să începem?" /></label>
+          <label className="field-full">Mesaj (opțional)<textarea name="message" maxLength={2000} rows={3} placeholder="Ce ai în minte pentru colecția ta?" /></label>
           <details className="brief-details">
-            <summary>Adaugă Instagram / site (opțional)</summary>
+            <summary>Instagram / site (opțional)<span aria-hidden="true">+</span></summary>
             <label>Instagram / site<input name="website" maxLength={250} placeholder="@salon sau adresa site-ului" /></label>
           </details>
         </div>
