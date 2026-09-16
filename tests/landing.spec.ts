@@ -1,5 +1,34 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+test("paralaxa rămâne discretă și respectă mișcarea redusă", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 300);
+  });
+  const shifts = () => page.locator(".hero-photo").evaluateAll((photos) =>
+    photos.map((photo) => new DOMMatrix(getComputedStyle(photo).transform).m42),
+  );
+  await expect.poll(async () => (await shifts())[0]).toBeGreaterThan(0);
+  const [left, right] = await shifts();
+  expect(right).toBeGreaterThan(left);
+  expect(left).toBeLessThanOrEqual(25);
+  expect(right).toBeLessThanOrEqual(35);
+  for (const selector of [".hero-visual", ".hero-detail"]) {
+    const covered = await page.locator(selector).evaluate((frame) => {
+      const outer = frame.getBoundingClientRect();
+      const inner = frame.querySelector(".hero-photo")!.getBoundingClientRect();
+      return inner.top <= outer.top && inner.bottom >= outer.bottom;
+    });
+    expect(covered).toBe(true);
+  }
+  await page.screenshot({ path: "/tmp/bridal-parallax.png" });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".hero-photo").first()).toHaveCSS("transform", "none");
+  await page.evaluate(() => window.scrollTo(0, 400));
+  await expect(page.locator(".hero-photo").last()).toHaveCSS("transform", "none");
+});
 for (const width of [375, 430, 768, 1024, 1440]) {
   test(`pagina responsive la ${width}px`, async ({ page }) => {
     const errors: string[] = [];
