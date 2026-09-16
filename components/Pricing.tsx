@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon";
 import { PackageCTA } from "./PackageCTA";
 import { packages, formatPrice } from "@/data/packages";
 const rows = [
@@ -27,8 +28,8 @@ export function Pricing() {
       </dl>
       <PackageCTA id={item.id} name={item.name} recommended={item.recommended} />
     </article>)}</div>
-    <details className="package-comparison"><summary>Compară toate detaliile <span aria-hidden="true">↓</span></summary><p className="comparison-intro">Toate pachetele includ concept, model, machiaj, coafură, fotografiere, filmare, editare și publicare.</p><div className="comparison-scroll" role="region" aria-label="Comparație detaliată a pachetelor" tabIndex={0}><table><caption>Ce include fiecare pachet</caption><thead><tr><th scope="col">Materiale și producție</th>{packages.map((p) => <th scope="col" key={p.id}>{p.name}</th>)}</tr></thead><tbody>{rows.map((row) => <tr key={row.label}><th scope="row">{row.label}</th>{row.values.map((value, i) => <td key={i}>{value}</td>)}</tr>)}</tbody></table></div></details>
+    <details className="package-comparison"><summary>Compară toate detaliile <ArrowIcon direction="down" /></summary><p className="comparison-intro">Toate pachetele includ concept, model, machiaj, coafură, fotografiere, filmare, editare și publicare.</p><div className="comparison-scroll" role="region" aria-label="Comparație detaliată a pachetelor" tabIndex={0}><table><caption>Ce include fiecare pachet</caption><thead><tr><th scope="col">Materiale și producție</th>{packages.map((p) => <th scope="col" key={p.id}>{p.name}</th>)}</tr></thead><tbody>{rows.map((row) => <tr key={row.label} className={row.values.every((value) => typeof value === "number") ? "numeric-row" : undefined}><th scope="row">{row.label}</th>{row.values.map((value, i) => <td key={i}>{value}</td>)}</tr>)}</tbody></table></div></details>
     <p className="pricing-note">*Taxele speciale de locație se aprobă separat.</p>
-    <details id="proces" className="package-comparison"><summary>Cum lucrăm <span aria-hidden="true">↓</span></summary><p className="comparison-intro">Alegem rochiile și direcția împreună. Noi coordonăm echipa și ședința foto-video, apoi edităm materialele și pregătim publicarea. Un singur punct de contact, de la idee la calendar.</p></details>
+    <details id="proces" className="package-comparison"><summary>Cum lucrăm <ArrowIcon direction="down" /></summary><p className="comparison-intro">Alegem rochiile și direcția împreună. Noi coordonăm echipa și ședința foto-video, apoi edităm materialele și pregătim publicarea. Un singur punct de contact, de la idee la calendar.</p></details>
   </section>;
 }

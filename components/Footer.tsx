@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon";
 import { Brand } from "./Brand";
 import { site, whatsappUrl } from "@/data/site";
 export function Footer() {
@@ -9,13 +10,13 @@ export function Footer() {
         <nav aria-label="Rețele sociale și contact">
           {site.instagram && (
             <a href={site.instagram} target="_blank" rel="noopener noreferrer">
-              Instagram ↗
+              Instagram <ArrowIcon direction="up-right" />
             </a>
           )}
           <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
-            WhatsApp ↗
+            WhatsApp <ArrowIcon direction="up-right" />
           </a>
-          {site.email && <a href={`mailto:${site.email}`}>Email ↗</a>}
+          {site.email && <a href={`mailto:${site.email}`}>Email <ArrowIcon direction="up-right" /></a>}
         </nav>
       </div>
       <div className="footer-bottom">
@@ -27,7 +28,7 @@ export function Footer() {
           <a href="#contact">Contact</a>
         </nav>
         <a href="#" className="back-top">
-          Înapoi sus ↑
+          Înapoi sus <ArrowIcon direction="up" />
         </a>
       </div>
     </footer>

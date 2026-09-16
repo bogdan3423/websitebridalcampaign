@@ -1,4 +1,6 @@
 "use client";
+import { ArrowIcon } from "./ArrowIcon";
+
 export function PackageCTA({
   id,
   name,
@@ -17,7 +19,7 @@ export function PackageCTA({
       }
     >
       Alege {name}
-      <span aria-hidden="true">↗</span>
+      <ArrowIcon />
     </a>
   );
 }

@@ -1,4 +1,6 @@
 "use client";
+import { ArrowIcon } from "./ArrowIcon";
+
 
 import Image from "next/image";
 import {
@@ -117,7 +119,7 @@ export function PortfolioGallery() {
                 sizes="(max-width: 650px) 90vw, 30vw"
               />
               <span className="portfolio-open" aria-hidden="true">
-                Vezi ↗
+                Vezi <ArrowIcon direction="up-right" />
               </span>
             </button>
           </figure>
@@ -134,7 +136,7 @@ export function PortfolioGallery() {
       >
         <span>Deschide galeria completă</span>
         <strong>{gallery.length} fotografii</strong>
-        <span aria-hidden="true">↗</span>
+        <ArrowIcon />
       </button>
 
       <dialog
@@ -225,7 +227,7 @@ export function PortfolioGallery() {
             onClick={() => move(-1)}
             aria-label="Fotografia precedentă"
           >
-            ← <span>Înapoi</span>
+            <ArrowIcon direction="left" /> <span>Înapoi</span>
           </button>
           <p>{gallery[active].label}</p>
           <button
@@ -233,7 +235,7 @@ export function PortfolioGallery() {
             onClick={() => move(1)}
             aria-label="Fotografia următoare"
           >
-            <span>Înainte</span> →
+            <span>Înainte</span> <ArrowIcon direction="right" />
           </button>
         </div>
       </dialog>

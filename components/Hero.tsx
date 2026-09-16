@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon";
 import Image from "next/image";
 import { heroImage, gallery } from "@/data/gallery";
 import { formatPrice, packages } from "@/data/packages";
@@ -11,7 +12,7 @@ export function Hero() {
     </HeroParallax>
     <div className="hero-copy">
       <p className="hero-promise">O campanie pentru colecția ta.<br />Foto, video și postări pentru saloane de mirese.</p>
-      <div className="hero-offer"><p className="hero-starting-price">De la {formatPrice(packages[0].price)} lei · Echipa inclusă</p><a href="#pachete" className="text-link">Vezi pachetele <span aria-hidden="true">↗</span></a></div>
+      <div className="hero-offer"><p className="hero-starting-price">De la {formatPrice(packages[0].price)} lei · Echipa inclusă</p><a href="#pachete" className="text-link">Vezi pachetele <ArrowIcon /></a></div>
     </div>
   </section>;
 }

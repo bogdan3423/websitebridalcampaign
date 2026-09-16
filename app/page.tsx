@@ -1,3 +1,4 @@
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
@@ -41,7 +42,7 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        WhatsApp <span aria-hidden="true">↗</span>
+        WhatsApp <ArrowIcon />
       </a>
     </>
   );

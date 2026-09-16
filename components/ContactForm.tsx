@@ -1,4 +1,6 @@
 "use client";
+import { ArrowIcon } from "./ArrowIcon";
+
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { packages } from "@/data/packages";
 import { site, whatsappUrl } from "@/data/site";
@@ -56,9 +58,9 @@ export function ContactForm() {
       <div className="contact-form-intro">
         <h2>Totul începe<br />cu o conversație.</h2>
         <p>Spune-ne ce ai în minte. Te ajutăm să alegi pachetul potrivit.</p>
-        <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Sau scrie-ne direct pe WhatsApp <span aria-hidden="true">↗</span></a>
+        <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Sau scrie-ne direct pe WhatsApp <ArrowIcon /></a>
         <a className="contact-phone" href={`tel:+${site.whatsapp}`}>
-          {site.phoneDisplay} <span aria-hidden="true">↗</span>
+          {site.phoneDisplay} <ArrowIcon />
         </a>
       </div>
       <form
@@ -135,7 +137,7 @@ export function ContactForm() {
             disabled={state === "sending"}
           >
             {state === "sending" ? "Se trimite…" : site.formEndpoint ? "Trimite cererea" : "Pregătește mesajul"}
-            <span aria-hidden="true">↗</span>
+            <ArrowIcon />
           </button>
         </div>
         {state !== "idle" && state !== "sending" && (
@@ -160,7 +162,7 @@ export function ContactForm() {
                   {site.whatsapp
                     ? "Continuă în WhatsApp"
                     : "Continuă prin email"}{" "}
-                  <span aria-hidden="true">↗</span>
+                  <ArrowIcon />
                 </a>
               </>
             ) : state === "sent" ? (

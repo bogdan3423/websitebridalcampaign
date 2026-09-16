@@ -1,4 +1,6 @@
 "use client";
+import { ArrowIcon } from "./ArrowIcon";
+
 import { useRef } from "react";
 import { Brand } from "./Brand";
 import { navigation } from "@/data/site";
@@ -18,7 +20,7 @@ export function Navbar() {
         ))}
       </nav>
       <a className="nav-cta" href="#contact">
-        Hai să vorbim <span aria-hidden="true">↗</span>
+        Hai să vorbim <ArrowIcon />
       </a>
       <button
         className="menu-toggle"
@@ -47,7 +49,7 @@ export function Navbar() {
             <a key={href} href={href} onClick={close}>
               <small>0{index + 1}</small>
               {label}
-              <span aria-hidden="true">↗</span>
+              <ArrowIcon />
             </a>
           ))}
         </nav>

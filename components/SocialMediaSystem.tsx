@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon";
 import Image from "next/image";
 import { gallery, feedImages } from "@/data/gallery";
 import { site } from "@/data/site";
@@ -52,7 +53,7 @@ export function SocialMediaSystem() {
           <div className="feed-preview">
             <div className="feed-heading">
               <span className="eyebrow">SHOWROOM-UL TĂU DIGITAL</span>
-              <span aria-hidden="true">↗</span>
+              <ArrowIcon />
             </div>
             <div className="feed-grid">
               {feedImages.map((index, i) => (
