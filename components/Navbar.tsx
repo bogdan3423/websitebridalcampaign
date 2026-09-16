@@ -13,17 +13,45 @@ export function Navbar() {
     let previousY = Math.max(0, window.scrollY);
     let travel = 0;
     let frame = 0;
+    let swapTimer: ReturnType<typeof setTimeout> | undefined;
     let heroEnd = hero.getBoundingClientRect().bottom + window.scrollY;
+    function setSurface(surface: "hero" | "paper") {
+      if (element!.dataset.surface === surface) return;
+      // Change positioning only while offscreen; never morph a visible masthead.
+      element!.dataset.switching = "true";
+      element!.dataset.surface = surface;
+      element!.dataset.hidden = surface === "paper" ? "true" : "false";
+      element!.getBoundingClientRect();
+      delete element!.dataset.switching;
+      travel = 0;
+    }
     function update() {
       frame = 0;
       const y = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
       const delta = y - previousY;
       previousY = y;
-      element!.dataset.surface = y < heroEnd - 88 ? "hero" : "paper";
       if (dialog.current?.open) { travel = 0; return; }
-      if (y <= 24) {
-        element!.dataset.hidden = "false";
+      if (y <= heroEnd) {
+        if (element!.dataset.surface === "paper") {
+          element!.dataset.hidden = "true";
+          if (y < 88) {
+            clearTimeout(swapTimer);
+            swapTimer = undefined;
+            setSurface("hero");
+          } else if (!swapTimer) {
+            swapTimer = setTimeout(() => {
+              swapTimer = undefined;
+              if (window.scrollY <= heroEnd) setSurface("hero");
+            }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 220);
+          }
+        }
         travel = 0;
+        return;
+      }
+      clearTimeout(swapTimer);
+      swapTimer = undefined;
+      if (element!.dataset.surface === "hero") {
+        setSurface("paper");
         return;
       }
       // Accumulate movement in one direction so tiny trackpad reversals don't flicker.
@@ -39,13 +67,13 @@ export function Navbar() {
       schedule();
     });
     observer.observe(hero);
-    element.dataset.hidden = previousY > 24 ? "true" : "false";
     update();
     window.addEventListener("scroll", schedule, { passive: true });
     return () => {
       window.removeEventListener("scroll", schedule);
       observer.disconnect();
       cancelAnimationFrame(frame);
+      clearTimeout(swapTimer);
     };
   }, []);
   function close() {

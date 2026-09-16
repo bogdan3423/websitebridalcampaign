@@ -624,7 +624,9 @@ tr.numeric-row td { text-align:right; }
 }
 
 .final-section { width:100%; margin:112px 0 0; padding:0; border:0; background:#302b27; color:#f5f2ed; }
-.navbar { position:fixed; transform:translateY(0); transition:transform 220ms cubic-bezier(.16,1,.3,1); }
+.navbar { position:absolute; transform:translateY(0); }
+.navbar[data-surface=paper] { position:fixed; transition:transform 220ms cubic-bezier(.16,1,.3,1); }
+.navbar[data-switching=true] { transition:none; }
 .navbar[data-hidden=true] { transform:translateY(-110%); pointer-events:none; }
 .navbar[data-hidden=true]::before { opacity:0; }
 .navbar:has(:focus-visible),.navbar:has(dialog[open]) { transform:translateY(0); pointer-events:auto; }

@@ -22,6 +22,14 @@ test("navigarea reapare la scroll în sus și rămâne accesibilă", async ({ pa
   await header.locator(".nav-cta").focus();
   await expect(header).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, 0)");
   await header.locator(".nav-cta").evaluate((link: HTMLElement) => link.blur());
+  const heroEnd = await page.locator(".hero-images").evaluate((hero) => hero.getBoundingClientRect().bottom + window.scrollY);
+  await scroll(heroEnd - 20);
+  await expect(header).toHaveAttribute("data-surface", "hero");
+  await expect(header).toHaveCSS("position", "absolute");
+  expect(await header.evaluate((nav) => nav.getBoundingClientRect().bottom)).toBeLessThan(0);
+  await scroll(200);
+  await expect(header).toHaveAttribute("data-surface", "hero");
+  expect(await header.evaluate((nav) => nav.getBoundingClientRect().bottom)).toBeLessThan(0);
   await scroll(0);
   await expect(header).toHaveAttribute("data-hidden", "false");
   await expect(header).toHaveAttribute("data-surface", "hero");
