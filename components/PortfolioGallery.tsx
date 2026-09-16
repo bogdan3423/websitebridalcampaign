@@ -9,7 +9,7 @@ import {
 } from "react";
 import { gallery } from "@/data/gallery";
 
-const visibleImages = gallery.slice(0, 6);
+const visibleImages = gallery.slice(0, 3);
 const minZoom = 1;
 const maxZoom = 3;
 
@@ -114,13 +114,12 @@ export function PortfolioGallery() {
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                sizes="(max-width: 800px) 50vw, 30vw"
+                sizes="(max-width: 650px) 90vw, 30vw"
               />
               <span className="portfolio-open" aria-hidden="true">
                 Vezi ↗
               </span>
             </button>
-            <figcaption>{photo.label}</figcaption>
           </figure>
         ))}
       </div>
@@ -215,7 +214,7 @@ export function PortfolioGallery() {
               alt={gallery[active].alt}
               fill
               sizes="95vw"
-              priority
+              loading="eager"
             />
           </div>
         </div>
@@ -241,4 +240,3 @@ export function PortfolioGallery() {
     </>
   );
 }
-

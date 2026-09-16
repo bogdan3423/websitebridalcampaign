@@ -35,12 +35,13 @@ test("meniul mobil și alegerea pachetului", async ({ page }) => {
     .getByRole("link", { name: "Pachete" })
     .click();
   await expect(page.locator(".mobile-menu")).not.toBeVisible();
-  await page.getByRole("link", { name: "Vreau pachetul Complet" }).click();
+  await page.getByRole("link", { name: "Alege Complet" }).click();
   await expect(page.getByLabel("Pachet de interes")).toHaveValue("complet");
+  await page.screenshot({ path: "/tmp/bridal-contact-mobile.png" });
 });
 test("formularul validează și pregătește mesajul corect", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Trimite cererea" }).click();
+  await page.getByRole("button", { name: "Pregătește mesajul" }).click();
   await expect(page.locator(".form-status")).toHaveCount(0);
   await page.getByLabel("Nume", { exact: false }).fill("Test local");
   await page.getByLabel("Salon", { exact: false }).fill("Salon de test");
@@ -53,9 +54,9 @@ test("formularul validează și pregătește mesajul corect", async ({ page }) =
   await page.getByLabel("Telefon", { exact: false }).fill("0748030566");
   await page.getByLabel("Pachet de interes").selectOption("extins");
   await page
-    .getByLabel("Mesaj", { exact: true })
+    .getByLabel("Mesaj (opțional)", { exact: true })
     .fill("Verificare locală, nu trimite.");
-  await page.getByRole("button", { name: "Trimite cererea" }).click();
+  await page.getByRole("button", { name: "Pregătește mesajul" }).click();
   await expect(page.getByRole("status")).toContainText(
     "Cererea ta este pregătită.",
   );
@@ -63,7 +64,7 @@ test("formularul validează și pregătește mesajul corect", async ({ page }) =
     .getByRole("link", { name: "Continuă în WhatsApp" })
     .getAttribute("href");
   expect(href).toContain("https://wa.me/40748030566?text=");
-  expect(decodeURIComponent(href!)).toContain("Pachet: extins");
+  expect(decodeURIComponent(href!)).toContain("Pachet: Extins");
   expect(decodeURIComponent(href!)).toContain("Salon de test");
 });
 test("accesibilitate și metadate", async ({ page }) => {
@@ -81,4 +82,34 @@ test("accesibilitate și metadate", async ({ page }) => {
       nodes: v.nodes.map((n) => n.target),
     })),
   ).toEqual([]);
+});
+
+test("exemplele se navighează cu tastatura și păstrează contextul", async ({ page }) => {
+  await page.goto("/");
+  const posts = page.getByRole("tab", { name: "Postări", exact: true });
+  await posts.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("tab", { name: "Catalog", exact: true })).toBeFocused();
+  await expect(page.getByRole("tabpanel")).toContainText("Exemplu de catalog · 1 / 3");
+  await page.getByRole("button", { name: "Paginile următoare" }).click();
+  await expect(page.getByRole("tabpanel")).toContainText("Exemplu de catalog · 2 / 3");
+  await page.screenshot({ path: "/tmp/bridal-catalog.png" });
+  await page.getByRole("tab", { name: "Plan de filmare" }).click();
+  await page.getByRole("button", { name: /05–10 sec/ }).click();
+  await expect(page.getByRole("tabpanel")).toContainText("Textura și finisajele");
+  const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+  expect(result.violations.map((v) => v.id)).toEqual([]);
+});
+test("galeria și comparația completă", async ({ page }) => {
+  await page.goto("/");
+  const trigger = page.getByRole("button", { name: "Deschide fotografia 1 din galerie" });
+  await trigger.click();
+  await expect(page.getByRole("dialog", { name: "Galerie foto din portofoliu" })).toBeVisible();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator(".lightbox-toolbar")).toContainText("02 / 06");
+  await page.keyboard.press("Escape");
+  await expect(trigger).toBeFocused();
+  await page.getByText("Compară toate detaliile").click();
+  await expect(page.getByRole("table")).toBeVisible();
+  await expect(page.getByRole("table")).toContainText("12–16 pagini");
 });

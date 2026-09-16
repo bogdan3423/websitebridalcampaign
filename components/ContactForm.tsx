@@ -26,7 +26,8 @@ export function ContactForm() {
     const values = Object.fromEntries(
       new FormData(event.currentTarget).entries(),
     );
-    const text = `Bună! Aș vrea să discutăm despre promovarea salonului meu.\n\nNume: ${values.name}\nSalon: ${values.salon}\nTelefon: ${values.phone}\nInstagram / site: ${values.website || "—"}\nPachet: ${values.package || "Aș dori o recomandare"}\nMesaj: ${values.message || "—"}`;
+    const packageName = packages.find((item) => item.id === values.package)?.name || "Aș dori o recomandare";
+    const text = `Bună! Aș vrea să discutăm despre promovarea salonului meu.\n\nNume: ${values.name}\nSalon: ${values.salon}\nTelefon: ${values.phone}\nInstagram / site: ${values.website || "—"}\nPachet: ${packageName}\nMesaj: ${values.message || "—"}`;
     if (site.formEndpoint) {
       setState("sending");
       try {
@@ -53,15 +54,9 @@ export function ContactForm() {
   return (
     <div className="contact-form-area" id="contact">
       <div className="contact-form-intro">
-        <span className="eyebrow">RĂSPUNDEM CU DRAG</span>
-        <h3 className="display">
-          Spune-ne câteva
-          <br />
-          <em>lucruri despre salon.</em>
-        </h3>
-        <p>
-          Te contactăm pentru a înțelege ce ai nevoie și pentru a stabili toate detaliile.
-        </p>
+        <h2>Hai să pregătim<br />colecția ta.</h2>
+        <p>Spune-ne ce ai în minte. Te ajutăm să alegi pachetul potrivit.</p>
+        <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Sau scrie-ne direct pe WhatsApp <span aria-hidden="true">↗</span></a>
         <a className="contact-phone" href={`tel:+${site.whatsapp}`}>
           {site.phoneDisplay} <span aria-hidden="true">↗</span>
         </a>
@@ -108,14 +103,6 @@ export function ContactForm() {
             />
           </label>
           <label>
-            Instagram / site
-            <input
-              name="website"
-              maxLength={250}
-              placeholder="@salon sau adresa site-ului"
-            />
-          </label>
-          <label className="field-full">
             Pachet de interes
             <select
               name="package"
@@ -130,15 +117,11 @@ export function ContactForm() {
               ))}
             </select>
           </label>
-          <label className="field-full">
-            Mesaj
-            <textarea
-              name="message"
-              maxLength={2000}
-              rows={3}
-              placeholder="Ce ai vrea să știm despre colecția ta?"
-            />
-          </label>
+          <label className="field-full">Mesaj (opțional)<textarea name="message" maxLength={2000} rows={3} placeholder="Câte rochii ai în minte? Când ai vrea să începem?" /></label>
+          <details className="brief-details">
+            <summary>Adaugă Instagram / site (opțional)</summary>
+            <label>Instagram / site<input name="website" maxLength={250} placeholder="@salon sau adresa site-ului" /></label>
+          </details>
         </div>
         <div className="form-bottom">
           <p>
@@ -151,7 +134,7 @@ export function ContactForm() {
             type="submit"
             disabled={state === "sending"}
           >
-            {state === "sending" ? "Se trimite…" : "Trimite cererea"}
+            {state === "sending" ? "Se trimite…" : site.formEndpoint ? "Trimite cererea" : "Pregătește mesajul"}
             <span aria-hidden="true">↗</span>
           </button>
         </div>

@@ -18,7 +18,7 @@ export function Navbar() {
         ))}
       </nav>
       <a className="nav-cta" href="#contact">
-        Cere o recomandare <span aria-hidden="true">↗</span>
+        Hai să vorbim <span aria-hidden="true">↗</span>
       </a>
       <button
         className="menu-toggle"
