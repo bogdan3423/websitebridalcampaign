@@ -576,6 +576,24 @@ tr.numeric-row td { text-align:right; }
 }
 
 /* A photographic viewing room: one counter, unobtrusive controls, visual navigation. */
+.portfolio-intro { margin-bottom:48px; }
+.portfolio-intro h2 { font-family:var(--font-editorial),serif; font-size:clamp(2.75rem,4.8vw,4.5rem); line-height:1; letter-spacing:-.035em; }
+.portfolio-open { width:40px; height:40px; justify-content:center; padding:0; border-radius:50%; background:var(--paper); transform:translateY(4px); transition:opacity 180ms ease-out,transform 180ms ease-out; }
+.portfolio-image-button:hover .portfolio-open,.portfolio-image-button:focus-visible .portfolio-open { transform:translateY(0); }
+.portfolio-image-button { cursor:zoom-in; }
+.open-full-gallery { width:max-content; max-width:100%; margin:32px auto 0; padding:12px 0; gap:16px; justify-content:center; border-bottom:1px solid var(--line); font-size:var(--text-small); }
+.open-full-gallery>span:first-child { padding:0; border:0; flex-basis:auto; }
+.gallery-count { color:var(--muted); font-size:var(--text-caption); font-variant-numeric:tabular-nums; }
+.open-full-gallery .arrow-icon { margin-left:8px; transition:transform 180ms ease-out; }
+.open-full-gallery:hover .arrow-icon { transform:translate(2px,-2px); }
+.pricing-note { margin:16px 0 24px; line-height:1.5; }
+.pricing-note sup,.package-setting sup { font-size:.75em; line-height:0; }
+@media(max-width:650px) {
+ .portfolio-intro { margin-bottom:32px; }
+ .portfolio-open { width:36px; height:36px; transform:none; }
+ .open-full-gallery { flex-wrap:nowrap; margin-top:24px; gap:12px; }
+ .pricing-note { max-width:38ch; }
+}
 .portfolio-lightbox { width:100vw; max-width:none; height:100dvh; max-height:none; margin:0; padding:0; overflow:hidden; border:0; background:var(--paper); color:var(--ink); }
 .portfolio-lightbox::backdrop { background:var(--paper); }
 .portfolio-lightbox :focus-visible { outline:2px solid var(--accent); outline-offset:4px; }

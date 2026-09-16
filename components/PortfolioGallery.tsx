@@ -171,7 +171,7 @@ export function PortfolioGallery() {
                 sizes="(max-width: 650px) 90vw, 30vw"
               />
               <span className="portfolio-open" aria-hidden="true">
-                Vezi <ArrowIcon direction="up-right" />
+                <ArrowIcon direction="up-right" />
               </span>
             </button>
           </figure>
@@ -186,8 +186,8 @@ export function PortfolioGallery() {
         type="button"
         onClick={() => open(0, visibleImages.length)}
       >
-        <span>Deschide galeria completă</span>
-        <strong>{gallery.length} fotografii</strong>
+        <span>Vezi galeria</span>
+        <span className="gallery-count">{String(gallery.length).padStart(2, "0")}</span>
         <ArrowIcon />
       </button>
 

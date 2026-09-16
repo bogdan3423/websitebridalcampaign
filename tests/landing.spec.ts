@@ -101,6 +101,8 @@ for (const width of [375, 430, 768, 1024, 1440]) {
       ).toBeVisible();
     await page.locator("#pachete").scrollIntoViewIfNeeded();
     await page.screenshot({ path: `/tmp/bridal-${width}-pricing.png` });
+    await page.locator(".portfolio-intro").scrollIntoViewIfNeeded();
+    await page.screenshot({ path: `/tmp/bridal-${width}-portfolio.png` });
     await page.locator("#contact").scrollIntoViewIfNeeded();
     await page.screenshot({ path: `/tmp/bridal-${width}-contact.png` });
     await page.locator("footer").scrollIntoViewIfNeeded();
