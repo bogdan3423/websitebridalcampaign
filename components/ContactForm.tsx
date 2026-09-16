@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+import { gallery } from "@/data/gallery";
 import { ArrowIcon } from "./ArrowIcon";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
@@ -54,13 +56,16 @@ export function ContactForm() {
     } else setState("error");
   }
   return (
-    <div className="contact-form-area" id="contact">
+    <div className="contact-form-area">
+      <figure className="contact-portrait">
+        <Image src={gallery[5].src} alt={gallery[5].alt} fill sizes="(max-width: 800px) 100vw, 48vw" />
+      </figure>
+      <div className="contact-content" id="contact">
       <div className="contact-form-intro">
-        <h2>Hai să vorbim.</h2>
-        <p>Despre colecția ta și cum o aducem în prim-plan.</p>
+        <h2>O nouă <em>perspectivă.</em></h2>
+        <p>Începe cu colecția ta.</p>
         <div className="contact-direct">
           <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Scrie-ne pe WhatsApp <ArrowIcon /></a>
-          <a className="contact-phone" href={`tel:+${site.whatsapp}`}>{site.phoneDisplay}</a>
         </div>
       </div>
       <form
@@ -183,6 +188,7 @@ export function ContactForm() {
           </div>
         )}
       </form>
+      </div>
     </div>
   );
 }

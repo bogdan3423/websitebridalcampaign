@@ -585,41 +585,72 @@ tr.numeric-row td { text-align:right; }
  .footer-main nav { flex-wrap:wrap; gap:16px; }
 }
 
-/* A quiet closing invitation, with clearly defined form controls. */
-.final-section { background:transparent; border-top:1px solid var(--line); padding:72px 0 0; margin-top:96px; margin-bottom:80px; }
-.contact-form-area { grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:9%; align-items:start; }
-.contact-form-intro h2 { font-family:var(--font-editorial),serif; font-size:clamp(3.5rem,5.5vw,5rem); line-height:1; letter-spacing:-.04em; margin-bottom:24px; }
-.contact-form-intro>p { max-width:28ch; }
-.contact-direct { display:flex; flex-direction:column; align-items:flex-start; gap:16px; margin-top:40px; }
-.contact-direct .contact-whatsapp { margin:0; gap:24px; width:auto; font-size:var(--text-small); }
-.contact-direct .contact-phone { display:block; margin:0; border:0; color:var(--muted); font-size:var(--text-small); font-variant-numeric:lining-nums; }
-.contact-direct .contact-phone:hover { color:var(--accent); }
+/* An editorial closing spread: photograph, inquiry, then the studio signature. */
+.final-section { width:100%; margin:112px 0 0; padding:0; border:0; background:#302b27; color:#f5f2ed; }
+.contact-form-area { display:grid; grid-template-columns:1fr 1.08fr; gap:0; padding:0; border:0; align-items:stretch; }
+.contact-portrait { position:relative; min-width:0; overflow:hidden; }
+.contact-portrait img { object-fit:cover; object-position:45% center; filter:saturate(.6); }
+.contact-content { padding:64px clamp(32px,5vw,80px); min-width:0; }
+.contact-form-intro { display:block; text-align:center; }
+.contact-form-intro h2 { font-family:var(--font-editorial),serif; font-size:clamp(3rem,4.6vw,4.5rem); line-height:.95; letter-spacing:-.035em; margin:0 0 20px; }
+.contact-form-intro h2 em { display:block; }
+.contact-form-intro>p { max-width:none; color:#d1c7be; font-size:var(--text-small); }
+.contact-direct { display:flex; justify-content:center; margin:16px 0 36px; }
+.contact-direct .contact-whatsapp { margin:0; width:auto; gap:12px; font-size:var(--text-small); border-color:#8f8176; }
+.contact-content a:hover { color:#e1c0a8; }
 .contact-form .form-fields { gap:24px; }
-.contact-form .form-fields label { font-size:var(--text-small); }
-.contact-form .form-fields input,.contact-form .form-fields select,.contact-form .form-fields textarea { appearance:none; -webkit-appearance:none; background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:12px 14px; margin-top:8px; min-height:52px; line-height:1.5; transition:border-color 150ms ease-out; }
-.contact-form .form-fields :is(input,select,textarea):hover { border-color:#a69489; }
-.contact-form .form-fields :is(input,select,textarea):focus-visible { border-color:var(--accent); outline:2px solid var(--accent); outline-offset:2px; }
-.contact-form .form-fields textarea { min-height:112px; }
+.contact-form .form-fields label { color:#d1c7be; font-size:var(--text-caption); line-height:1.5; }
+.contact-form .form-fields input,.contact-form .form-fields select,.contact-form .form-fields textarea { appearance:none; -webkit-appearance:none; background:transparent; color:#f5f2ed; border:0; border-bottom:1px solid #8f8176; border-radius:0; padding:10px 0; margin-top:4px; min-height:48px; line-height:1.5; transition:border-color 150ms ease-out; }
+.contact-form .form-fields :is(input,select,textarea):hover { border-color:#ded2c7; }
+.contact-content :focus-visible { outline:2px solid #e1c0a8; outline-offset:4px; }
+.contact-form .form-fields :is(input,textarea)::placeholder { color:#bfb5ab; }
+.contact-form .form-fields textarea { min-height:88px; }
 .form-fields label>.contact-select { display:block; position:relative; }
-.contact-form .form-fields select { padding-right:44px; }
-.contact-select>svg { position:absolute; right:14px; top:16px; pointer-events:none; }
-.contact-form .brief-details summary { display:flex; align-items:center; justify-content:space-between; gap:16px; list-style:none; padding:0 0 16px; border-bottom:1px solid var(--line); }
+.contact-form .form-fields select { padding-right:28px; }
+.contact-form select option { color:var(--ink); background:var(--paper); }
+.contact-select>svg { position:absolute; right:0; top:14px; pointer-events:none; }
+.contact-form .brief-details summary { display:flex; align-items:center; justify-content:space-between; gap:16px; list-style:none; padding:0 0 12px; border-bottom:1px solid #8f8176; color:#d1c7be; font-size:var(--text-caption); }
 .brief-details summary>span { font-size:20px; line-height:1; transition:transform 180ms ease-out; }
 .brief-details[open] summary>span { transform:rotate(45deg); }
 .contact-form .brief-details[open] label { margin-top:16px; }
-.contact-form .form-bottom { margin-top:24px; gap:12px; }
-.contact-form .form-bottom>.button { order:-1; width:100%; min-height:56px; padding-inline:20px; font-weight:500; }
-.contact-form .form-bottom>p { max-width:none; line-height:1.5; }
-@media(max-width:1050px) {
- .contact-form-area { grid-template-columns:1fr; gap:40px; }
- .contact-form-intro { display:grid; grid-template-columns:1fr auto; column-gap:32px; }
- .contact-form-intro h2,.contact-form-intro>p { grid-column:1; }
- .contact-direct { grid-column:2; grid-row:1/3; align-self:center; margin:0; }
+.contact-form .form-bottom { margin-top:28px; align-items:center; gap:16px; }
+.contact-form .form-bottom>.button { order:-1; width:100%; min-height:52px; padding-inline:20px; font-weight:400; background:#ede6de; color:#302b27; border-color:#ede6de; }
+.contact-form .form-bottom>.button:hover { background:#ded0c3; border-color:#ded0c3; }
+.contact-form .form-bottom>p { max-width:42ch; text-align:center; line-height:1.5; color:#bfb5ab; }
+.contact-form .form-status { border-color:#8f8176; }
+.footer { padding:64px max(32px,5.55vw) 24px; background:var(--paper); border:0; }
+.footer-directory { display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; font-size:var(--text-small); }
+.footer-directory nav { display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+.footer-directory a { min-height:28px; }
+.footer-location { text-align:center; line-height:1.8; }
+.footer-location span { display:block; color:var(--muted); }
+.footer-directory .footer-contact { align-items:flex-end; }
+.footer-contact a { gap:12px; }
+.footer .footer-signature { display:block; margin:64px 0 32px; font-family:var(--font-editorial),serif; font-size:clamp(2rem,8.9vw,9rem); font-weight:400; line-height:1; letter-spacing:-.035em; text-align:center; text-transform:uppercase; white-space:nowrap; }
+.footer-colophon { display:flex; align-items:center; justify-content:space-between; gap:24px; border-top:1px solid var(--line); padding-top:20px; font-size:var(--text-caption); color:var(--muted); }
+.footer-colophon .back-top { gap:12px; min-height:32px; }
+@media(max-width:1050px) and (min-width:801px) {
+ .contact-content { padding:48px 28px; }
+ .contact-form .form-fields { column-gap:20px; }
+ .contact-form .form-fields select { font-size:var(--text-small); }
+}
+@media(max-width:800px) {
+ .contact-form-area { grid-template-columns:1fr; }
+ .contact-portrait { height:480px; }
+ .contact-portrait img { object-position:center 42%; }
+ .contact-content { padding:48px max(32px,8vw); }
 }
 @media(max-width:650px) {
- .final-section { padding:48px 0 0; margin-top:64px; margin-bottom:48px; }
- .contact-form-intro { display:block; }
- .contact-form-intro h2 { margin-bottom:16px; }
- .contact-direct { margin-top:24px; gap:12px; }
+ .final-section { margin-top:64px; }
+ .contact-portrait { height:110vw; max-height:520px; }
+ .contact-content { padding:40px 24px; }
+ .contact-form-intro h2 { font-size:3.5rem; }
  .contact-form .form-fields { gap:20px; }
+ .contact-direct { margin-bottom:32px; }
+ .footer { padding:40px 24px 20px; }
+ .footer-directory { grid-template-columns:1fr 1fr; gap:28px 16px; font-size:var(--text-caption); }
+ .footer-location { grid-column:1; grid-row:2; text-align:left; }
+ .footer-directory .footer-contact { grid-column:2; grid-row:1/3; }
+ .footer .footer-signature { margin:44px 0 24px; font-size:8.5vw; }
+ .footer-colophon { gap:12px; padding-top:16px; }
 }
