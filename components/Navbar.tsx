@@ -1,9 +1,8 @@
 "use client";
-import { ArrowIcon } from "./ArrowIcon";
 
 import { useRef } from "react";
 import { Brand } from "./Brand";
-import { navigation } from "@/data/site";
+import { navigation, site } from "@/data/site";
 export function Navbar() {
   const dialog = useRef<HTMLDialogElement>(null);
   function close() {
@@ -20,7 +19,7 @@ export function Navbar() {
         ))}
       </nav>
       <a className="nav-cta" href="#contact">
-        Hai să vorbim <ArrowIcon />
+        Contact
       </a>
       <button
         className="menu-toggle"
@@ -41,19 +40,17 @@ export function Navbar() {
         <div className="menu-top">
           <Brand />
           <button onClick={close} aria-label="Închide meniul">
-            Închide ×
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" stroke="currentColor" strokeWidth="1.25" /></svg>
           </button>
         </div>
         <nav>
-          {navigation.map(([label, href], index) => (
+          {[...navigation, ["Contact", "#contact"]].map(([label, href]) => (
             <a key={href} href={href} onClick={close}>
-              <small>0{index + 1}</small>
               {label}
-              <ArrowIcon />
             </a>
           ))}
         </nav>
-        <p>Cluj-Napoca · Promovare pentru saloane de rochii de mireasă</p>
+        <div className="menu-contact"><p>Cluj-Napoca, România</p><a href={`tel:+${site.whatsapp}`}>{site.phoneDisplay}</a></div>
       </dialog>
     </header>
   );

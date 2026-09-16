@@ -68,6 +68,8 @@ test("meniul mobil și alegerea pachetului", async ({ page }) => {
   await expect(
     page.getByRole("dialog", { name: "Meniu de navigare" }),
   ).toBeVisible();
+  await expect(page.locator(".mobile-menu").getByRole("link", { name: "Contact", exact: true })).toBeVisible();
+  await page.screenshot({ path: "/tmp/bridal-mobile-menu.png" });
   await page
     .locator(".mobile-menu")
     .getByRole("link", { name: "Pachete" })
