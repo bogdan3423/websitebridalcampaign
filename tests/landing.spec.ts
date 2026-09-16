@@ -1,5 +1,46 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+test("navigarea reapare la scroll în sus și rămâne accesibilă", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const header = page.locator("header.navbar");
+  await expect(header).toHaveAttribute("data-surface", "hero");
+  const scroll = async (y: number) => {
+    await page.evaluate((top) => window.scrollTo({ top, behavior: "instant" }), y);
+  };
+  await scroll(1200);
+  await expect(header).toHaveAttribute("data-hidden", "true");
+  await scroll(1100);
+  await expect(header).toHaveAttribute("data-hidden", "false");
+  await expect(header).toHaveAttribute("data-surface", "paper");
+  await expect(header).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, 0)");
+  await page.screenshot({ path: "/tmp/bridal-sticky-header.png" });
+  await scroll(1103);
+  await expect(header).toHaveAttribute("data-hidden", "false");
+  await scroll(1250);
+  await expect(header).toHaveAttribute("data-hidden", "true");
+  await header.locator(".nav-cta").focus();
+  await expect(header).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, 0)");
+  await header.locator(".nav-cta").evaluate((link: HTMLElement) => link.blur());
+  await scroll(0);
+  await expect(header).toHaveAttribute("data-hidden", "false");
+  await expect(header).toHaveAttribute("data-surface", "hero");
+});
+test("meniul mobil funcționează din bara reapărută", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  const header = page.locator("header.navbar");
+  await page.evaluate(() => window.scrollTo({ top: 1200, behavior: "instant" }));
+  await expect(header).toHaveAttribute("data-hidden", "true");
+  await page.evaluate(() => window.scrollTo({ top: 1100, behavior: "instant" }));
+  await expect(header).toHaveAttribute("data-hidden", "false");
+  await expect(header).toHaveAttribute("data-surface", "paper");
+  await page.getByRole("button", { name: "Deschide meniul" }).click();
+  await expect(page.getByRole("dialog", { name: "Meniu de navigare" })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog", { name: "Meniu de navigare" })).not.toBeVisible();
+  await expect(page.getByRole("button", { name: "Deschide meniul" })).toBeFocused();
+});
 test("paralaxa rămâne discretă și respectă mișcarea redusă", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
