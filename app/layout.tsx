@@ -14,9 +14,9 @@ const sans = Manrope({
   display: "swap",
 });
 const title =
-  "Promovare pentru saloane de rochii de mireasă | Cluj-Napoca";
+  "Campanii de conținut pentru saloane bridal | Cluj-Napoca";
 const description =
-  "Promovare completă pentru saloane de rochii de mireasă: videoclipuri scurte cu actor, fotografii profesionale cu model, catalog tipărit și postări pregătite pentru publicare.";
+  "Transformăm colecțiile bridal în campanii complete: fotografie editorială, marketing video, social media și materiale editoriale pentru salon.";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title,

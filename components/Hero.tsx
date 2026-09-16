@@ -1,7 +1,6 @@
 import { ArrowIcon } from "./ArrowIcon";
 import Image from "next/image";
 import { heroImage, gallery } from "@/data/gallery";
-import { formatPrice, packages } from "@/data/packages";
 import { HeroParallax } from "./HeroParallax";
 export function Hero() {
   return <section className="hero" aria-labelledby="hero-title">
@@ -10,14 +9,14 @@ export function Hero() {
       <figure className="hero-detail"><div className="hero-photo"><Image src={gallery[2].src} alt={gallery[2].alt} fill sizes="42vw" loading="eager" /></div></figure>
       <div className="hero-title">
         <div>
-          <p className="hero-kicker">Foto · Video · Promovare</p>
-          <h1 id="hero-title">Promovare pentru<br />saloane de <em>rochii de mireasă.</em></h1>
+          <p className="hero-kicker">Bridal Growth Campaigns</p>
+          <h1 id="hero-title">Transformăm colecția ta bridal<br />în conținut care aduce mirese <em>în showroom.</em></h1>
         </div>
       </div>
     </HeroParallax>
     <div className="hero-copy">
-      <p className="hero-promise">Venim cu actor, model și echipament profesional. Filmăm videoclipuri scurte, fotografiem rochiile și pregătim conținutul salonului pentru promovare.</p>
-      <div className="hero-offer"><p className="hero-starting-price">Totul inclus · de la {formatPrice(packages[0].price)} lei</p><a href="#ce-facem" className="text-link">Vezi ce facem <ArrowIcon /></a></div>
+      <p className="hero-promise">Foto editorial. Marketing video. Social media. Construim campania, producem conținutul și îl transformăm într-o prezență constantă online.</p>
+      <div className="hero-actions"><a href="#contact" className="button button-dark">Discutăm 10 minute <ArrowIcon /></a><a href="#proces" className="text-link">Vezi cum lucrăm <ArrowIcon /></a></div>
     </div>
   </section>;
 }

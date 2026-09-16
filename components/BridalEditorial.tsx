@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { gallery } from "@/data/gallery";
-import { packages } from "@/data/packages";
 import { SectionLabel } from "./SectionLabel";
 export function BridalEditorial() {
   return (
-    <section className="editorial-section">
-      <div className="section">
+    <section id="editorial" className="editorial-section">
+      <div className="section-shell">
         <SectionLabel number="07">Dincolo de ecran</SectionLabel>
         <div className="editorial-layout">
           <div className="magazine-stage">
@@ -48,8 +47,8 @@ export function BridalEditorial() {
               </em>
             </h2>
             <p>
-              La final, fotografiile devin și un lookbook fizic și digital,
-              construit în identitatea salonului.
+              La final, selecția de imagini poate deveni și un lookbook fizic și
+              digital, construit în identitatea salonului.
             </p>
             <ul className="editorial-contents">
               <li>Dress Spotlight</li>
@@ -58,15 +57,7 @@ export function BridalEditorial() {
               <li>Call to Appointment</li>
             </ul>
             <div className="editorial-options">
-              {packages.map((p) => (
-                <div key={p.id}>
-                  <span>{p.name}</span>
-                  <span>
-                    {p.pages} pagini / {p.copies}{" "}
-                    {p.copies === 1 ? "exemplar" : "exemplare"}
-                  </span>
-                </div>
-              ))}
+              <span>Formatul și numărul de pagini sunt stabilite în funcție de colecție și de campanie.</span>
             </div>
           </div>
         </div>

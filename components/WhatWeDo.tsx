@@ -4,42 +4,39 @@ import { gallery } from "@/data/gallery";
 const services = [
   {
     number: "01",
-    title: "Videoclipuri scurte cu actor",
-    text: "Venim cu echipament profesional și un actor care prezintă rochiile, salonul, colecțiile și motivele pentru care o viitoare mireasă să programeze o probă.",
-    note: "Filmăm vertical, pregătit pentru rețelele sociale.",
+    eyebrow: "Foto editorial",
+    title: "Fotografiem rochia din toate unghiurile care contează.",
+    text: "Construim cadre premium pentru social media, website și campanii: imagini principale, cadre întregi, spatele rochiei, trenă, corset, material și detalii.",
+    note: "Imagine principală · Cadru întreg · Trenă · Detalii",
   },
   {
     number: "02",
-    title: "Fotografii profesionale",
-    text: "Fotografiem rochiile cele mai vândute și piesele pe care vrei să le promovezi, cu atenție la croială, detalii și felul în care arată în mișcare.",
+    eyebrow: "Marketing video",
+    title: "Filmăm videoclipuri scurte, fiecare cu un rol clar.",
+    text: "Actorul, consultantul sau proprietarul salonului prezintă. Modelul arată rochia în mișcare. Noi filmăm formatele care explică, inspiră și conduc către programarea unei probe.",
   },
   {
     number: "03",
-    title: "Model pregătit de noi",
-    text: "Aducem modelul potrivit pentru ședința foto, machiat și coafat. Salonul pregătește rochiile, iar noi coordonăm restul producției.",
+    eyebrow: "Social media",
+    title: "Transformăm producția într-un ritm real de promovare.",
+    text: "Pregătim videoclipuri scurte, carusele, cadre de detaliu, postări temporare, texte și îndemnuri clare. Materialele nu rămân într-un folder.",
   },
   {
     number: "04",
-    title: "Catalog fizic",
-    text: "Selectăm fotografiile realizate și le așezăm într-un catalog tipărit, pe care clientele îl pot răsfoi direct în salon.",
-  },
-  {
-    number: "05",
-    title: "Postări și prezență constantă",
-    text: "Pregătim postări temporare constante și postări statice cu un design clar, orientate spre promovare, vânzare și programări la probă.",
+    eyebrow: "Bridal editorial",
+    title: "Dăm colecției o formă pe care mireasa o poate răsfoi.",
+    text: "Selecția de fotografii devine un material editorial fizic și digital, construit în identitatea salonului și în jurul colecției promovate.",
   },
 ] as const;
 
 export function WhatWeDo() {
   return (
-    <section id="ce-facem" className="what-we-do section-shell" aria-labelledby="what-we-do-title">
+    <section id="servicii" className="what-we-do section-shell" aria-labelledby="what-we-do-title">
       <div className="what-we-do-intro">
-        <p className="eyebrow">Tot ce primește salonul</p>
-        <h2 id="what-we-do-title">Ce facem concret?</h2>
-        <p>
-          O singură echipă pentru tot ce ai nevoie ca să prezinți rochiile mai bine și să rămâi activ în fața viitoarelor mirese.
-        </p>
-        <span>Toate cele 5 servicii sunt incluse în fiecare pachet.</span>
+        <p className="eyebrow">Campanie completă</p>
+        <h2 id="what-we-do-title">O campanie.<br /><em>Nu doar niște poze.</em></h2>
+        <p>Ne ocupăm cap-coadă de imaginea colecției: concept, echipă, producție foto-video, materiale pentru social media și editorial.</p>
+        <span>Salonul are un singur punct de contact. Noi coordonăm întreaga producție.</span>
       </div>
 
       <div className="what-we-do-grid">
@@ -48,12 +45,12 @@ export function WhatWeDo() {
             {index === 0 && (
               <div className="what-we-do-video" aria-hidden="true">
                 <Image src={gallery[3].src} alt="" fill sizes="(max-width: 800px) 90vw, 30vw" />
-                <span className="video-play">▶</span>
-                <small>Format vertical · 9:16</small>
+                <small>Fotografie editorială</small>
               </div>
             )}
             <div className="what-we-do-card-copy">
               <span className="what-we-do-number">{service.number}</span>
+              <span className="what-we-do-eyebrow">{service.eyebrow}</span>
               <h3>{service.title}</h3>
               <p>{service.text}</p>
               {"note" in service && <small>{service.note}</small>}

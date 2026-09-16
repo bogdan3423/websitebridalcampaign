@@ -17,7 +17,8 @@ export function whatsappUrl(
     : "#contact";
 }
 export const navigation = [
-  ["Ce facem", "#ce-facem"],
-  ["Portofoliu", "#servicii"],
-  ["Pachete", "#pachete"],
+  ["Servicii", "#servicii"],
+  ["Video", "#video"],
+  ["Galerie", "#galerie"],
+  ["Cum lucrăm", "#proces"],
 ] as const;

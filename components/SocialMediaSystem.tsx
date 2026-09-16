@@ -5,8 +5,8 @@ import { site } from "@/data/site";
 import { SectionLabel } from "./SectionLabel";
 export function SocialMediaSystem() {
   return (
-    <section className="social-section">
-      <div className="section">
+    <section id="social-media" className="social-section">
+      <div className="section-shell">
         <SectionLabel number="05">Social media, cu continuitate</SectionLabel>
         <div className="social-layout">
           <div className="social-copy">
@@ -18,7 +18,7 @@ export function SocialMediaSystem() {
               <em>folder.</em>
             </h2>
             <p className="social-intro">
-              Îl transformăm într-o lună de prezență online.
+              Îl transformăm într-un ritm real de promovare.
             </p>
             <p>
               Instagram. Facebook. TikTok, unde este relevant. O imagine
@@ -27,32 +27,26 @@ export function SocialMediaSystem() {
             </p>
             <div className="social-deliverables">
               {[
-                "Carusele & close-up posts",
-                "Dress spotlight & Reels",
-                "Stories zilnice",
-                "Captions & CTA-uri",
-                "Programare & publicare",
-                "Cross-posting",
+                "Reels și carusele",
+                "Close-ups și dress spotlight",
+                "Stories și BTS",
+                "Engagement și sales content",
+                "Captions și CTA-uri",
+                "Programare, publicare și cross-posting",
               ].map((x) => (
                 <span key={x}>{x}</span>
               ))}
             </div>
             <p className="social-days display">
-              30{" "}
-              <span>
-                ZILE
-                <br />
-                DE PREZENȚĂ
-              </span>
+              De la filmare<br /><em>la calendar.</em>
             </p>
             <p className="fine-print">
-              Community management extins și răspunsurile la DM-uri nu sunt
-              incluse.
+              Prezență constantă, construită dintr-o singură producție.
             </p>
           </div>
           <div className="feed-preview">
             <div className="feed-heading">
-              <span className="eyebrow">SHOWROOM-UL TĂU DIGITAL</span>
+              <span className="eyebrow">SHOWROOM-UL DIGITAL AL SALONULUI</span>
               <ArrowIcon />
             </div>
             <div className="feed-grid">

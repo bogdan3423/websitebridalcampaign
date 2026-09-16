@@ -90,7 +90,7 @@ export function Navbar() {
         ))}
       </nav>
       <a className="nav-cta" href="#contact">
-        Contact
+        Discutăm?
       </a>
       <button
         className="menu-toggle"
