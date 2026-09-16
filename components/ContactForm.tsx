@@ -54,7 +54,7 @@ export function ContactForm() {
   return (
     <div className="contact-form-area" id="contact">
       <div className="contact-form-intro">
-        <h2>Hai să pregătim<br />colecția ta.</h2>
+        <h2>Totul începe<br />cu o conversație.</h2>
         <p>Spune-ne ce ai în minte. Te ajutăm să alegi pachetul potrivit.</p>
         <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Sau scrie-ne direct pe WhatsApp <span aria-hidden="true">↗</span></a>
         <a className="contact-phone" href={`tel:+${site.whatsapp}`}>
