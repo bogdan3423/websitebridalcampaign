@@ -103,6 +103,7 @@ for (const width of [375, 430, 768, 1024, 1440]) {
     await page.screenshot({ path: `/tmp/bridal-${width}-pricing.png` });
     await page.locator(".portfolio-intro").scrollIntoViewIfNeeded();
     await page.screenshot({ path: `/tmp/bridal-${width}-portfolio.png` });
+    await page.locator(".campaign-samples").screenshot({ path: `/tmp/bridal-${width}-samples.png` });
     await page.locator("#contact").scrollIntoViewIfNeeded();
     await page.screenshot({ path: `/tmp/bridal-${width}-contact.png` });
     await page.locator("footer").scrollIntoViewIfNeeded();
@@ -224,6 +225,7 @@ test("galeria și comparația completă", async ({ page }) => {
   await page.getByText("Compară toate detaliile").click();
   await expect(page.getByRole("table")).toBeVisible();
   await expect(page.getByRole("table")).toContainText("12–16 pagini");
+  await page.locator(".comparison-scroll").screenshot({ path: "/tmp/bridal-comparison.png" });
 });
 test("galeria mobilă: pinch, swipe și închidere", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
