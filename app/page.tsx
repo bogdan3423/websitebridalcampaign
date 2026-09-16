@@ -1,6 +1,7 @@
 import { ArrowIcon } from "@/components/ArrowIcon";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { WhatWeDo } from "@/components/WhatWeDo";
 import { Services } from "@/components/Services";
 import { Pricing } from "@/components/Pricing";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -14,7 +15,7 @@ export default function Home() {
     url: site.url,
     telephone: `+${site.whatsapp}`,
     description:
-      "Fotografiere, filmare și pregătirea postărilor pentru saloane de rochii de mireasă.",
+      "Videoclipuri scurte cu actor, fotografii profesionale cu model, cataloage și postări pentru saloane de rochii de mireasă.",
     areaServed: { "@type": "City", name: "Cluj-Napoca" },
     ...(site.email ? { email: site.email } : {}),
     ...(site.instagram ? { sameAs: [site.instagram] } : {}),
@@ -30,6 +31,7 @@ export default function Home() {
       <Navbar />
       <main id="continut">
         <Hero />
+        <WhatWeDo />
         <Services />
         <Pricing />
         <FinalCTA />

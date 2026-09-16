@@ -7,6 +7,7 @@ export function Footer() {
       <div className="footer-studio">
         <a className="footer-signature" href="#" aria-label={`${site.name} — început`}>{site.name}</a>
         <nav aria-label="Navigare subsol" className="footer-navigation">
+          <a href="#ce-facem">Ce facem</a>
           <a href="#servicii">Portofoliu</a>
           <a href="#pachete">Pachete</a>
           <a href="#contact">Contact</a>

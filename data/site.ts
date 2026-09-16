@@ -17,6 +17,7 @@ export function whatsappUrl(
     : "#contact";
 }
 export const navigation = [
+  ["Ce facem", "#ce-facem"],
   ["Portofoliu", "#servicii"],
   ["Pachete", "#pachete"],
 ] as const;
