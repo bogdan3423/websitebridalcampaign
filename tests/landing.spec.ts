@@ -8,18 +8,23 @@ test("paralaxa rămâne discretă și respectă mișcarea redusă", async ({ pag
     window.scrollTo(0, 300);
   });
   const shifts = () => page.locator(".hero-photo").evaluateAll((photos) =>
+    photos.map((photo) => new DOMMatrix(getComputedStyle(photo).transform).m41),
+  );
+  await expect.poll(async () => (await shifts())[0]).toBeLessThan(-25);
+  const [left, right] = await shifts();
+  expect(right).toBeGreaterThan(25);
+  expect(Math.abs(left)).toBeLessThanOrEqual(96);
+  expect(right).toBeLessThanOrEqual(96);
+  const vertical = await page.locator(".hero-photo").evaluateAll((photos) =>
     photos.map((photo) => new DOMMatrix(getComputedStyle(photo).transform).m42),
   );
-  await expect.poll(async () => (await shifts())[0]).toBeGreaterThan(0);
-  const [left, right] = await shifts();
-  expect(right).toBeGreaterThan(left);
-  expect(left).toBeLessThanOrEqual(25);
-  expect(right).toBeLessThanOrEqual(35);
+  expect(vertical).toEqual([0, 0]);
   for (const selector of [".hero-visual", ".hero-detail"]) {
     const covered = await page.locator(selector).evaluate((frame) => {
       const outer = frame.getBoundingClientRect();
       const inner = frame.querySelector(".hero-photo")!.getBoundingClientRect();
-      return inner.top <= outer.top && inner.bottom >= outer.bottom;
+      return inner.left <= outer.left && inner.right >= outer.right
+        && inner.top <= outer.top && inner.bottom >= outer.bottom;
     });
     expect(covered).toBe(true);
   }

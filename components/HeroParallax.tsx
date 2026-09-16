@@ -12,21 +12,20 @@ export function HeroParallax({ children }: { children: ReactNode }) {
     const photos = frame.querySelectorAll<HTMLElement>(".hero-photo");
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
-    let height = 0;
-    let bottom = 1;
+    let travelDistance = 1;
+    let widths: number[] = [];
     let visible = true;
 
     function paint() {
       raf = 0;
-      const progress = Math.min(1, Math.max(0, window.scrollY / bottom));
+      const progress = Math.min(1, Math.max(0, window.scrollY / travelDistance));
       photos.forEach((photo, index) => {
-        // Scale provides 5% overscan on each edge; travel stays below it.
-        const travel = index === 0
-          ? Math.min(25, height * 0.03)
-          : Math.min(35, height * 0.045);
+        // 12% overscan on each side keeps a 10% horizontal drift inside the frame.
+        const travel = Math.min(96, (widths[index] || 0) * 0.1);
+        const direction = index === 0 ? -1 : 1;
         photo.style.transform = motion.matches
           ? "none"
-          : `translate3d(0, ${(progress * travel).toFixed(2)}px, 0) scale(1.1)`;
+          : `translate3d(${(progress * travel * direction).toFixed(2)}px, 0, 0) scale(1.24)`;
       });
     }
 
@@ -36,8 +35,8 @@ export function HeroParallax({ children }: { children: ReactNode }) {
 
     function measure() {
       const bounds = frame!.getBoundingClientRect();
-      height = bounds.height;
-      bottom = Math.max(1, bounds.top + window.scrollY + height);
+      travelDistance = Math.max(1, bounds.height * 0.8);
+      widths = Array.from(photos, (photo) => photo.offsetWidth);
       if (raf) cancelAnimationFrame(raf);
       paint();
     }
