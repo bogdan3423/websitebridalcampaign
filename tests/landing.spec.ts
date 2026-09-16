@@ -82,6 +82,8 @@ test("formularul validează și pregătește mesajul corect", async ({ page }) =
   await page.getByRole("button", { name: "Pregătește mesajul" }).click();
   await expect(page.locator(".form-status")).toHaveCount(0);
   await page.getByLabel("Nume", { exact: false }).fill("Test local");
+  await expect(page.getByLabel("Nume", { exact: false })).toBeFocused();
+  await page.locator(".contact-content").screenshot({ path: "/tmp/bridal-contact-focus.png" });
   await page.getByLabel("Salon", { exact: false }).fill("Salon de test");
   await page.getByLabel("Telefon", { exact: false }).fill("numar invalid");
   expect(
