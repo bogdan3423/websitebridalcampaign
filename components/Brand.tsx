@@ -11,7 +11,6 @@ export function Brand() {
             {site.name.toUpperCase()}
             <span className="brand-period">.</span>
           </span>
-          <small>IMAGINE ȘI PROMOVARE</small>
         </>
       )}
     </a>

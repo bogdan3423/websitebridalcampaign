@@ -1,4 +1,6 @@
 "use client";
+import { ArrowIcon } from "./ArrowIcon";
+
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { gallery } from "@/data/gallery";
@@ -42,7 +44,7 @@ export function EditorialGallery() {
                 sizes={index === 3 ? "92vw" : "(max-width: 767px) 88vw, 50vw"}
               />
               <span className="image-expand" aria-hidden="true">
-                ↗
+                <ArrowIcon direction="up-right" />
               </span>
             </button>
             <figcaption>{photo.label}</figcaption>
@@ -87,11 +89,11 @@ export function EditorialGallery() {
         </div>
         <div className="lightbox-bottom">
           <button onClick={() => move(-1)} aria-label="Fotografia precedentă">
-            ←
+            <ArrowIcon direction="left" />
           </button>
           <p>{gallery[active].label}</p>
           <button onClick={() => move(1)} aria-label="Fotografia următoare">
-            →
+            <ArrowIcon direction="right" />
           </button>
         </div>
       </dialog>

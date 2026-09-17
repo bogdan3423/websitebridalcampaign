@@ -24,7 +24,7 @@ Build-ul public este în `out/`. Pentru testele end-to-end porniți mai întâi 
 
 - **Fotografii:** `data/gallery.ts` (inclusiv hero și selecția feed). Fișierele sunt în `public/images/`. Înlocuiți fotografiile provizorii înainte de a prezenta galeria ca portofoliu real.
 - **Nume, logo, WhatsApp, telefon, Instagram, email:** `data/site.ts`. Pentru logo, setați `logo: '/images/logo.svg'`; componenta este `components/Brand.tsx`. Emailul și Instagramul lipsesc intenționat până la furnizarea adreselor reale.
-- **Prețuri și livrabile:** `data/packages.ts`. Pachetele, sumarul final, numărul de Reels și variantele revistei reutilizează aceleași date.
+- **Servicii și parcursul campaniei:** componentele din `components/`, ordonate în `app/page.tsx`.
 - **Culori, fonturi, spațiere:** `app/globals.css`, respectiv `app/layout.tsx`.
 - **SEO:** `app/layout.tsx`; datele structurate se află în `app/page.tsx`. Modificați `site.url` când conectați domeniul final. Numele impactomedia.ro nu înseamnă că acest domeniu a fost conectat.
 

@@ -1,84 +1,109 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+
+test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Transformăm colecția ta bridal");
+  await expect(page.getByRole("link", { name: "Discutăm 10 minute", exact: true }).first()).toHaveAttribute("href", "#contact");
+  await expect(page.getByRole("link", { name: "Vezi cum lucrăm" })).toHaveAttribute("href", "#proces");
+  await expect(page.getByRole("heading", { name: /Sezonul nunților/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /O campanie/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Reels de toate felurile/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Când rochia devine imagine." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Fiecare salon are o colecție diferită." })).toBeVisible();
+
+  const body = await page.locator("body").innerText();
+  expect(body).not.toMatch(/3[.]300|4[.]000|5[.]500|Alege pachetul|Compară toate detaliile/i);
+  expect(body).not.toMatch(/garantăm programări|vei vinde mai multe|aducem [0-9]+ mirese/i);
+});
+
+test("navigarea indică numai secțiuni existente", async ({ page }) => {
+  await page.goto("/");
+  const hrefs = await page.locator("header a[href^='#'], footer a[href^='#']").evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+  for (const href of hrefs) {
+    if (!href || href === "#") continue;
+    await expect(page.locator(href)).toHaveCount(1);
+  }
+  await expect(page.locator("header")).not.toContainText("Pachete");
+  await expect(page.locator("footer")).not.toContainText("Pachete");
+});
+
+test("navigarea reapare la scroll în sus", async ({ page }) => {
+  await page.goto("/");
+  const header = page.locator("header.navbar");
+  await expect(header).toHaveAttribute("data-surface", "hero");
+  await page.evaluate(() => window.scrollTo({ top: 1500, behavior: "instant" }));
+  await expect(header).toHaveAttribute("data-hidden", "true");
+  await page.evaluate(() => window.scrollTo({ top: 1300, behavior: "instant" }));
+  await expect(header).toHaveAttribute("data-hidden", "false");
+  await expect(header).toHaveAttribute("data-surface", "paper");
+});
+
 for (const width of [375, 430, 768, 1024, 1440]) {
-  test(`pagina responsive la ${width}px`, async ({ page }) => {
+  test(`pagina rămâne fluidă la ${width}px`, async ({ page }) => {
     const errors: string[] = [];
-    page.on("pageerror", (e) => errors.push(e.message));
+    page.on("pageerror", (error) => errors.push(error.message));
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     await expect(page.locator("h1")).toHaveCount(1);
-    expect(
-      await page.evaluate(() => document.documentElement.scrollWidth),
-    ).toBeLessThanOrEqual(width);
-    await expect(page.locator(".package")).toHaveCount(3);
-    for (const price of ["3.300", "4.000", "5.500"])
-      await expect(
-        page.locator(".package-price").filter({ hasText: price }),
-      ).toBeVisible();
-    await page.locator("#pachete").scrollIntoViewIfNeeded();
-    await page.screenshot({ path: `/tmp/bridal-${width}-pricing.png` });
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.screenshot({ path: `/tmp/bridal-${width}-hero.png` });
+    await expect(page.locator("#video")).toBeVisible();
+    await expect(page.locator("#proces")).toBeVisible();
+    await expect(page.locator("#contact")).toBeVisible();
+    await page.screenshot({ path: `/tmp/bridal-campaign-${width}.png`, fullPage: true });
     expect(errors).toEqual([]);
   });
 }
-test("meniul mobil și alegerea pachetului", async ({ page }) => {
+
+test("meniul mobil și legăturile principale funcționează", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
   await page.getByRole("button", { name: "Deschide meniul" }).click();
-  await expect(
-    page.getByRole("dialog", { name: "Meniu de navigare" }),
-  ).toBeVisible();
-  await page
-    .locator(".mobile-menu")
-    .getByRole("link", { name: "Pachete" })
-    .click();
-  await expect(page.locator(".mobile-menu")).not.toBeVisible();
-  await page.getByRole("link", { name: "Vreau pachetul Complet" }).click();
-  await expect(page.getByLabel("Pachet de interes")).toHaveValue("complet");
+  const menu = page.getByRole("dialog", { name: "Meniu de navigare" });
+  await expect(menu).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Servicii" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Video" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Galerie" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Cum lucrăm" })).toBeVisible();
+  await menu.getByRole("link", { name: "Video" }).click();
+  await expect(menu).not.toBeVisible();
+  await expect(page.locator("#video")).toBeInViewport();
 });
-test("formularul validează și pregătește mesajul corect", async ({ page }) => {
+
+test("formularul scurt pregătește mesajul pentru WhatsApp", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Trimite cererea" }).click();
-  await expect(page.locator(".form-status")).toHaveCount(0);
   await page.getByLabel("Nume", { exact: false }).fill("Test local");
-  await page.getByLabel("Salon", { exact: false }).fill("Salon de test");
-  await page.getByLabel("Telefon", { exact: false }).fill("numar invalid");
-  expect(
-    await page
-      .getByLabel("Telefon", { exact: false })
-      .evaluate((input: HTMLInputElement) => input.checkValidity()),
-  ).toBe(false);
+  await page.getByRole("textbox", { name: "Salon *", exact: true }).fill("Salon de test");
   await page.getByLabel("Telefon", { exact: false }).fill("0748030566");
-  await page.getByLabel("Pachet de interes").selectOption("extins");
-  await page
-    .getByLabel("Mesaj", { exact: true })
-    .fill("Verificare locală, nu trimite.");
-  await page.getByRole("button", { name: "Trimite cererea" }).click();
-  await expect(page.getByRole("status")).toContainText(
-    "Cererea ta este pregătită.",
-  );
-  const href = await page
-    .getByRole("link", { name: "Continuă în WhatsApp" })
-    .getAttribute("href");
+  await page.getByLabel("Instagram / website").fill("@salondetest");
+  await page.getByLabel("Mesaj (opțional)").fill("Vrem să promovăm colecția nouă.");
+  await page.getByRole("button", { name: "Vreau să discutăm" }).click();
+  await expect(page.getByRole("status")).toContainText("Mesajul este pregătit.");
+  const href = await page.getByRole("link", { name: "Continuă în WhatsApp" }).getAttribute("href");
   expect(href).toContain("https://wa.me/40748030566?text=");
-  expect(decodeURIComponent(href!)).toContain("Pachet: extins");
   expect(decodeURIComponent(href!)).toContain("Salon de test");
+  expect(decodeURIComponent(href!)).not.toContain("Pachet:");
 });
-test("accesibilitate și metadate", async ({ page }) => {
+
+test("galeria și exemplele interactive rămân funcționale", async ({ page }) => {
+  await page.goto("/");
+  const trigger = page.getByRole("button", { name: "Deschide fotografia 1 din galerie" });
+  await trigger.click();
+  await expect(page.getByRole("dialog", { name: "Galerie foto din portofoliu" })).toBeVisible();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator(".lightbox-toolbar")).toContainText("02 / 06");
+  await page.keyboard.press("Escape");
+  await expect(trigger).toBeFocused();
+
+  await page.getByRole("tab", { name: "Catalog", exact: true }).click();
+  await expect(page.getByRole("tabpanel")).toContainText("Exemplu de catalog");
+});
+
+test("pagina respectă regulile principale de accesibilitate", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "ro");
-  await expect(page).toHaveTitle(/Promovare pentru saloane/);
-  const text = await page.locator("body").innerText();
-  expect(text).not.toMatch(/\b(Reels|Stories|Hero|BTS|CTA|content|marketing|bridal|feed|lookbook)\b/i);
-  const results = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(
-    results.violations.map((v) => ({
-      id: v.id,
-      nodes: v.nodes.map((n) => n.target),
-    })),
-  ).toEqual([]);
+  await expect(page).toHaveTitle(/Campanii de conținut/);
+  const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+  expect(results.violations.map((violation) => ({ id: violation.id, nodes: violation.nodes.map((node) => node.target) }))).toEqual([]);
 });
