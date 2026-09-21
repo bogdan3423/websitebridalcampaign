@@ -984,6 +984,7 @@ summary,button { -webkit-user-select:none; user-select:none; }
  .story-step,.story-chapter--dense .story-step,.social-workflow-step { min-height:0; padding:34px 0; }
  [data-story-ready=true] .story-step { opacity:.72; transform:translateY(14px); }
  [data-story-ready=true] .story-step[data-active=true] { opacity:1; transform:translateY(0); }
+ [data-story-ready=true] .social-feed-post[data-visible=false] { opacity:1; transform:none; }
  .editorial-reveal { min-height:700px; }
  .story-cta { gap:48px; }
 }

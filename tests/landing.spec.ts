@@ -98,6 +98,11 @@ test("storytelling-ul are animații discrete pe mobil", async ({ page }) => {
   await expect(steps.nth(1)).toHaveAttribute("data-active", "true");
   await expect(steps.nth(1)).toHaveCSS("opacity", "1");
   await expect(steps.nth(1)).not.toHaveCSS("transition-duration", "0s");
+
+  const feedOpacity = await page.locator("#social-media .social-feed-post").evaluateAll(
+    (posts) => posts.map((post) => getComputedStyle(post).opacity),
+  );
+  expect(feedOpacity).toEqual(Array(9).fill("1"));
 });
 
 test("formularul scurt pregătește mesajul pentru WhatsApp", async ({ page }) => {
