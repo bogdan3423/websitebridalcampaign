@@ -33,8 +33,8 @@ export const gallery = portfolioSelection.map((photo, index) => ({
 }));
 
 export const heroImage = {
-  src: "/images/portfolio/IRI_4999.webp",
-  alt: "Model purtând o rochie albă lungă pe scara unui interior elegant",
+  src: "/images/portfolio/IRI_4772.webp",
+  alt: "Modelă brunetă purtând o rochie de mireasă din satin, fotografiată pe trepte",
 };
 
 // Nouă poziții pentru previzualizarea feedului, bazate pe selecția de mai sus.
