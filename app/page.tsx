@@ -2,11 +2,8 @@ import { ArrowIcon } from "@/components/ArrowIcon";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { SeasonalTimeline } from "@/components/SeasonalTimeline";
-import { WhatWeDo } from "@/components/WhatWeDo";
-import { VideoFormats } from "@/components/VideoFormats";
+import { Storytelling } from "@/components/storytelling/Storytelling";
 import { Services } from "@/components/Services";
-import { SocialMediaSystem } from "@/components/SocialMediaSystem";
-import { BridalEditorial } from "@/components/BridalEditorial";
 import { CampaignFit } from "@/components/CampaignFit";
 import { Process } from "@/components/Process";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -37,11 +34,8 @@ export default function Home() {
       <main id="continut">
         <Hero />
         <SeasonalTimeline />
-        <WhatWeDo />
-        <VideoFormats />
+        <Storytelling />
         <Services />
-        <SocialMediaSystem />
-        <BridalEditorial />
         <CampaignFit />
         <Process />
         <FinalCTA />

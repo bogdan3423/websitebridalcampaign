@@ -7,13 +7,17 @@ test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Discutăm 10 minute", exact: true }).first()).toHaveAttribute("href", "#contact");
   await expect(page.getByRole("link", { name: "Vezi cum lucrăm" })).toHaveAttribute("href", "#proces");
   await expect(page.getByRole("heading", { name: /Sezonul nunților/ })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /O campanie/ })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /Reels de toate felurile/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Tu alegi rochiile. Noi construim imaginea./ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Nu facem doar Reels./ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Conținutul nu rămâne/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Iar imaginile nu dispar/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Când rochia devine imagine." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fiecare salon are o colecție diferită." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Tu alegi rochiile. Noi construim campania./ })).toBeVisible();
 
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/3[.]300|4[.]000|5[.]500|Alege pachetul|Compară toate detaliile/i);
+  expect(body).not.toMatch(/Standard —|Plus —|Premium —|10 reels|15 reels|20 reels|30 zile/i);
   expect(body).not.toMatch(/garantăm programări|vei vinde mai multe|aducem [0-9]+ mirese/i);
 });
 
@@ -24,7 +28,7 @@ test("navigarea indică numai secțiuni existente", async ({ page }) => {
     if (!href || href === "#") continue;
     await expect(page.locator(href)).toHaveCount(1);
   }
-  await expect(page.locator("header")).not.toContainText("Pachete");
+  await expect(page.locator("header.navbar")).not.toContainText("Pachete");
   await expect(page.locator("footer")).not.toContainText("Pachete");
 });
 
@@ -39,7 +43,7 @@ test("navigarea reapare la scroll în sus", async ({ page }) => {
   await expect(header).toHaveAttribute("data-surface", "paper");
 });
 
-for (const width of [375, 430, 768, 1024, 1440]) {
+for (const width of [375, 390, 430, 768, 1024, 1440]) {
   test(`pagina rămâne fluidă la ${width}px`, async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -69,6 +73,18 @@ test("meniul mobil și legăturile principale funcționează", async ({ page }) 
   await menu.getByRole("link", { name: "Video" }).click();
   await expect(menu).not.toBeVisible();
   await expect(page.locator("#video")).toBeInViewport();
+});
+
+test("storytelling-ul păstrează scroll-ul nativ și reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.locator("#photo").scrollIntoViewIfNeeded();
+  const before = await page.evaluate(() => window.scrollY);
+  await page.mouse.wheel(0, 700);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(before);
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+  await expect(page.locator("#photo .story-step").first()).toHaveCSS("transition-duration", "0s");
 });
 
 test("formularul scurt pregătește mesajul pentru WhatsApp", async ({ page }) => {
