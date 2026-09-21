@@ -115,6 +115,8 @@ test("hero-ul mobil alternează fotografiile folosite pe desktop", async ({ page
   await expect(images).toHaveCount(2);
   await expect(images.nth(0)).toHaveAttribute("src", /IRI_4834/);
   await expect(images.nth(1)).toHaveAttribute("src", /IRI_5172/);
+  await expect(images.nth(0)).toHaveCSS("filter", /grayscale\(1\)/);
+  await expect(page.locator(".hero-primary-darklayer")).toHaveCSS("background-color", "rgba(15, 12, 11, 0.48)");
   await expect(images.nth(0)).toHaveCSS("animation-name", "hero-mobile-primary");
   await expect(images.nth(1)).toHaveCSS("animation-name", "hero-mobile-secondary");
 });
