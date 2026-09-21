@@ -851,7 +851,7 @@ summary,button { -webkit-user-select:none; user-select:none; }
 }
 @media(max-width:650px) {
  .section-label { margin-bottom:38px; }
- .hero h1 { max-width:10ch; font-size:clamp(2.5rem,11.8vw,3.35rem); }
+ .hero h1 { max-width:10ch; font-size:clamp(2.5rem,11.8vw,3.35rem); line-height:.98; letter-spacing:-.04em; }
  .hero-actions { align-items:stretch; margin-top:22px; }
  .hero-actions .button { width:100%; min-width:0; }
  .hero-actions .text-link { width:max-content; }

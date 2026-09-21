@@ -125,7 +125,11 @@ test("hero-ul mobil păstrează doar fotografia principală", async ({ page }) =
   const titleSize = await page.locator("#hero-title").evaluate((title) =>
     Number.parseFloat(getComputedStyle(title).fontSize),
   );
+  const titleLineHeight = await page.locator("#hero-title").evaluate((title) =>
+    Number.parseFloat(getComputedStyle(title).lineHeight),
+  );
   expect(titleSize).toBeLessThan(47);
+  expect(titleLineHeight / titleSize).toBeGreaterThanOrEqual(0.97);
 });
 
 test("secțiunile mari de servicii intră integral din stânga", async ({ page }) => {
