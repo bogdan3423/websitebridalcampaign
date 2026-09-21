@@ -7,7 +7,12 @@ test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Transformăm colecția ta bridal");
   await expect(page.getByRole("link", { name: "Discutăm 10 minute", exact: true }).first()).toHaveAttribute("href", "#contact");
   await expect(page.getByRole("link", { name: "Vezi cum lucrăm" })).toHaveAttribute("href", "#proces");
-  await expect(page.getByRole("heading", { name: /Sezonul nunților/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Fotografii, Reels, postări și revista salonului/ })).toBeVisible();
+  await expect(page.locator("#rezumat-campanie .campaign-summary-grid li")).toHaveCount(4);
+  await expect(page.locator("#rezumat-campanie")).toContainText("Fotografie editorială");
+  await expect(page.locator("#rezumat-campanie")).toContainText("Reels & video");
+  await expect(page.locator("#rezumat-campanie")).toContainText("Postări & design");
+  await expect(page.locator("#rezumat-campanie")).toContainText("Revista salonului");
   await expect(page.getByRole("heading", { name: /Tu alegi rochiile. Noi construim imaginea./ })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Nu facem doar Reels./ })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Conținutul nu rămâne/ })).toBeVisible();

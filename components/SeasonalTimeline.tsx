@@ -1,42 +1,48 @@
 import { SectionLabel } from "./SectionLabel";
-const months = [
-  ["Septembrie", "Pregătim"],
-  ["Octombrie", "Producem"],
-  ["Noiembrie", "Lansăm"],
-  ["Decembrie", "Construim vizibilitate"],
-  ["Ianuarie", "Transformăm interesul în programări"],
-];
+
+const deliverables = [
+  {
+    title: "Fotografie editorială",
+    copy: "Fotografiem modelele și rochiile: cadre principale, full-body, spate, trenă, corset, material și detalii.",
+  },
+  {
+    title: "Reels & video",
+    copy: "Filmăm rochiile în mișcare și producem Reels de prezentare, educaționale, comparison, trend, CTA și BTS.",
+  },
+  {
+    title: "Postări & design",
+    copy: "Selectăm imaginile, scriem textele și construim postări, carusele și Stories cu o direcție vizuală coerentă.",
+  },
+  {
+    title: "Revista salonului",
+    copy: "Punem fotografiile într-un editorial al salonului: copertă, rochii, detalii, povestea brandului și invitație la programare.",
+  },
+] as const;
+
 export function SeasonalTimeline() {
   return (
-    <section id="sezon" className="seasonal section-shell">
-      <SectionLabel number="01">Momentul potrivit</SectionLabel>
-      <div className="split-heading">
-        <h2>
-          Sezonul nunților
+    <section id="rezumat-campanie" className="campaign-summary section-shell" aria-labelledby="campaign-summary-title">
+      <SectionLabel number="01">Campania, pe scurt</SectionLabel>
+      <div className="campaign-summary-head">
+        <h2 id="campaign-summary-title">
+          Fotografii, Reels, postări
           <br />
-          se încheie.
-          <br />
-          <em>
-            Sezonul deciziilor
-            <br />
-            începe.
-          </em>
+          <em>și revista salonului.</em>
         </h2>
-        <div className="season-copy">
+        <div className="campaign-summary-intro">
           <p>
-            În toamnă pregătim imaginea și conținutul salonului pentru perioada în
-            care viitoarele mirese încep să caute, să salveze și să compare
-            rochii.
+            Organizăm producția și transformăm materialele într-un sistem complet
+            de conținut pentru salon.
           </p>
-          <p>Când interesul crește, conținutul trebuie să fie deja online.</p>
+          <p>De la shooting până la design, texte, publicare și editorialul final.</p>
         </div>
       </div>
-      <ol className="timeline">
-        {months.map(([month, text]) => (
-          <li key={month}>
-            <span className="timeline-dot" />
-            <h3>{month}</h3>
-            <p>{text}</p>
+      <ol className="campaign-summary-grid" aria-label="Livrabilele campaniei">
+        {deliverables.map((deliverable, index) => (
+          <li key={deliverable.title}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{deliverable.title}</h3>
+            <p>{deliverable.copy}</p>
           </li>
         ))}
       </ol>
