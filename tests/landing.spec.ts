@@ -15,6 +15,7 @@ test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Când rochia devine imagine." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fiecare salon are o colecție diferită." })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Tu alegi rochiile. Noi construim campania./ })).toBeVisible();
+  await expect(page.locator("#photo .story-media").first().locator("img")).toHaveAttribute("src", /IRI_5399/);
 
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/3[.]300|4[.]000|5[.]500|Alege pachetul|Compară toate detaliile/i);

@@ -46,9 +46,9 @@ export const photoStory: StoryChapterData = {
       copy: "Venim cu modelul potrivit pentru colecție.",
       media: {
         type: "image",
-        src: portfolio("IRI_4834"),
-        alt: "Modelă brunetă într-o rochie de mireasă din satin, fotografiată pe trepte",
-        position: "center 28%",
+        src: portfolio("IRI_5399"),
+        alt: "Portret editorial al unei modele blonde purtând voal și mănuși albe",
+        position: "center 32%",
       },
     },
     {
