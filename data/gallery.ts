@@ -37,5 +37,10 @@ export const heroImage = {
   alt: "Modelă brunetă într-o rochie de mireasă din satin, fotografiată pe trepte",
 };
 
+export const heroSecondaryImage = {
+  src: "/images/portfolio/IRI_5172.webp",
+  alt: "Modelă blondă într-o rochie albă și mănuși, fotografiată într-un interior elegant",
+};
+
 // Nouă poziții pentru previzualizarea feedului, bazate pe selecția de mai sus.
 export const feedImages = [0, 1, 2, 3, 4, 5, 0, 2, 4] as const;

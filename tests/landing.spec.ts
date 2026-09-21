@@ -3,6 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 
 test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
   await page.goto("/");
+  await expect(page.locator(".hero-detail img")).toHaveAttribute("src", /IRI_5172/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Transformăm colecția ta bridal");
   await expect(page.getByRole("link", { name: "Discutăm 10 minute", exact: true }).first()).toHaveAttribute("href", "#contact");
   await expect(page.getByRole("link", { name: "Vezi cum lucrăm" })).toHaveAttribute("href", "#proces");
