@@ -56,6 +56,7 @@ a:hover { color:var(--accent); }
  .hero-photo { transform:none; will-change:auto; }
 }
 .hero-visual img { object-position:center 15%; }
+.hero-mobile-secondary { display:none; }
 .hero-detail img { object-position:center 27%; }
 .hero-title { position:absolute; inset:0; display:flex; align-items:flex-end; padding:50px 5%; background:linear-gradient(0deg,rgba(25,16,12,.65),transparent 65%); pointer-events:none; }
 .hero h1 { color:#fffaf1; font-family:var(--font-editorial),serif; font-size:clamp(5rem,10vw,10rem); font-weight:500; line-height:.82; letter-spacing:-.055em; margin:0; text-shadow:0 2px 20px #23171026; }
@@ -307,6 +308,8 @@ details[open]>.comparison-scroll { animation:arrive .25s; }
  .hero-images { margin:0 10px; display:block; height:65svh; min-height:430px; max-height:680px; }
  .hero-visual { height:100%; width:100%; aspect-ratio:auto; }
  .hero-visual img { object-position:50% 27%; }
+ .hero-visual .hero-mobile-primary { animation:hero-mobile-primary 10s ease-in-out infinite; }
+ .hero-visual .hero-mobile-secondary { display:block; opacity:0; object-position:50% 28%; animation:hero-mobile-secondary 10s ease-in-out infinite; }
  .hero-detail { display:none; }
  .hero-title { padding:28px 24px; }
  .hero h1 { font-size:5.8rem; line-height:.82; }
@@ -330,6 +333,17 @@ details[open]>.comparison-scroll { animation:arrive .25s; }
  .final-section { padding:30px 20px; margin-bottom:40px; }
  .contact-form-area { padding:0; }
  .footer-main .brand>span { font-size:1.1rem; }
+}
+
+@keyframes hero-mobile-primary {
+ 0%,42% { opacity:1; }
+ 50%,92% { opacity:0; }
+ 100% { opacity:1; }
+}
+@keyframes hero-mobile-secondary {
+ 0%,42% { opacity:0; }
+ 50%,92% { opacity:1; }
+ 100% { opacity:0; }
 }
 
 /* Shared type rhythm and vector icon geometry. */

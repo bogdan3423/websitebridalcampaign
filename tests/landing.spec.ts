@@ -106,6 +106,19 @@ test("storytelling-ul are animații discrete pe mobil", async ({ page }) => {
   expect(feedOpacity).toEqual(Array(9).fill("1"));
 });
 
+test("hero-ul mobil alternează fotografiile folosite pe desktop", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const images = page.locator(".hero-visual img");
+  await expect(images).toHaveCount(2);
+  await expect(images.nth(0)).toHaveAttribute("src", /IRI_4834/);
+  await expect(images.nth(1)).toHaveAttribute("src", /IRI_5172/);
+  await expect(images.nth(0)).toHaveCSS("animation-name", "hero-mobile-primary");
+  await expect(images.nth(1)).toHaveCSS("animation-name", "hero-mobile-secondary");
+});
+
 test("secțiunile mari de servicii intră integral din stânga", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.setViewportSize({ width: 390, height: 844 });

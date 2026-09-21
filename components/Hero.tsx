@@ -5,7 +5,12 @@ import { HeroParallax } from "./HeroParallax";
 export function Hero() {
   return <section className="hero" aria-labelledby="hero-title">
     <HeroParallax>
-      <figure className="hero-visual"><div className="hero-photo"><Image src={heroImage.src} alt={heroImage.alt} fill sizes="(max-width: 650px) 100vw, 58vw" loading="eager" fetchPriority="high" /></div></figure>
+      <figure className="hero-visual">
+        <div className="hero-photo">
+          <Image className="hero-mobile-primary" src={heroImage.src} alt={heroImage.alt} fill sizes="(max-width: 650px) 100vw, 58vw" loading="eager" fetchPriority="high" />
+          <Image className="hero-mobile-secondary" src={heroSecondaryImage.src} alt="" fill sizes="100vw" loading="eager" />
+        </div>
+      </figure>
       <figure className="hero-detail"><div className="hero-photo"><Image src={heroSecondaryImage.src} alt={heroSecondaryImage.alt} fill sizes="42vw" loading="eager" /></div></figure>
       <div className="hero-title">
         <div>
