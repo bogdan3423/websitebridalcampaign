@@ -105,6 +105,24 @@ test("storytelling-ul are animații discrete pe mobil", async ({ page }) => {
   expect(feedOpacity).toEqual(Array(9).fill("1"));
 });
 
+test("secțiunile mari de servicii intră integral din stânga", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const chapters = page.locator(".story-chapter");
+  await expect(chapters).toHaveCount(4);
+  for (const chapter of await chapters.all()) {
+    await expect(chapter).toHaveAttribute("data-section-reveal-ready", "true");
+  }
+
+  const photo = page.locator("#photo");
+  await expect(photo).toHaveAttribute("data-section-visible", "false");
+  await photo.scrollIntoViewIfNeeded();
+  await expect(photo).toHaveAttribute("data-section-visible", "true");
+  await expect(photo.locator(":scope > .section-shell")).toHaveCSS("opacity", "1");
+});
+
 test("formularul scurt pregătește mesajul pentru WhatsApp", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("Nume", { exact: false }).fill("Test local");

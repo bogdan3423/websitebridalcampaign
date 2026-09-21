@@ -15,6 +15,18 @@ export function useStoryProgress() {
       root.querySelectorAll<HTMLElement>("[data-story-step]"),
     );
     root.dataset.storyReady = "true";
+    root.dataset.sectionRevealReady = "true";
+    root.dataset.sectionVisible = "false";
+
+    const sectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        root.dataset.sectionVisible = "true";
+        sectionObserver.unobserve(root);
+      },
+      { rootMargin: "0px 0px -14% 0px", threshold: 0.08 },
+    );
+    sectionObserver.observe(root);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,7 +46,10 @@ export function useStoryProgress() {
     steps.forEach((step) => observer.observe(step));
     return () => {
       observer.disconnect();
+      sectionObserver.disconnect();
       delete root.dataset.storyReady;
+      delete root.dataset.sectionRevealReady;
+      delete root.dataset.sectionVisible;
     };
   }, []);
 
