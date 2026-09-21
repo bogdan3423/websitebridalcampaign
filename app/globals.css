@@ -58,8 +58,8 @@ a:hover { color:var(--accent); }
 .hero-visual img { object-position:center 15%; }
 .hero-detail img { object-position:center 27%; }
 .hero-title { position:absolute; inset:0; display:flex; align-items:flex-end; padding:50px 5%; background:linear-gradient(0deg,rgba(25,16,12,.65),transparent 65%); pointer-events:none; }
-.hero h1 { color:#fffaf1; font-family:var(--font-editorial),serif; font-size:clamp(5rem,10vw,10rem); font-weight:400; line-height:.82; letter-spacing:-.055em; margin:0; text-shadow:0 2px 20px #23171026; }
-.hero h1 em { font-weight:400; }
+.hero h1 { color:#fffaf1; font-family:var(--font-editorial),serif; font-size:clamp(5rem,10vw,10rem); font-weight:500; line-height:.82; letter-spacing:-.055em; margin:0; text-shadow:0 2px 20px #23171026; }
+.hero h1 em { font-weight:500; }
 .hero-copy { display:flex; align-items:center; justify-content:space-between; gap:40px; padding:30px 0 32px; width:min(1280px,calc(100% - 112px)); margin:auto; border-bottom:1px solid var(--line); }
 .hero-promise { font-size:var(--text-body); line-height:1.8; color:var(--muted); max-width:50ch; margin:0; }
 .hero-offer { display:flex; align-items:center; gap:40px; }
