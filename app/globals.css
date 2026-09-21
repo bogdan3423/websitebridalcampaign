@@ -637,7 +637,7 @@ summary,button { -webkit-user-select:none; user-select:none; }
 .hero-kicker { margin-bottom:18px; color:#fffaf1; font-size:var(--text-caption); font-weight:650; letter-spacing:.16em; text-transform:uppercase; }
 .hero h1 { max-width:12ch; font-size:clamp(4.25rem,7.1vw,7.25rem); line-height:.88; }
 .hero h1 em { display:inline; }
-.hero-showroom { padding-inline:.025em; background:linear-gradient(transparent 80%,rgba(205,151,119,.92) 80%,rgba(205,151,119,.92) 91%,transparent 91%); -webkit-box-decoration-break:clone; box-decoration-break:clone; text-shadow:0 2px 12px rgba(25,16,12,.28); }
+.hero-showroom { padding-inline:.025em; background:linear-gradient(transparent 75%,rgba(205,151,119,.92) 75%,rgba(205,151,119,.92) 86%,transparent 86%); -webkit-box-decoration-break:clone; box-decoration-break:clone; text-shadow:0 2px 12px rgba(25,16,12,.28); }
 .hero-promise { max-width:64ch; }
 
 .what-we-do { display:grid; grid-template-columns:minmax(240px,.72fr) minmax(0,1.55fr); gap:clamp(48px,7vw,112px); padding-top:120px; }
