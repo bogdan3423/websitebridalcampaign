@@ -119,6 +119,10 @@ test("hero-ul mobil alternează fotografiile folosite pe desktop", async ({ page
   await expect(page.locator(".hero-primary-darklayer")).toHaveCSS("background-color", "rgba(15, 12, 11, 0.48)");
   await expect(images.nth(0)).toHaveCSS("animation-name", "hero-mobile-primary");
   await expect(images.nth(1)).toHaveCSS("animation-name", "hero-mobile-secondary");
+  const titleSize = await page.locator("#hero-title").evaluate((title) =>
+    Number.parseFloat(getComputedStyle(title).fontSize),
+  );
+  expect(titleSize).toBeLessThan(47);
 });
 
 test("secțiunile mari de servicii intră integral din stânga", async ({ page }) => {

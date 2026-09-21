@@ -704,7 +704,7 @@ summary,button { -webkit-user-select:none; user-select:none; }
 /* The existing editorial system extended across the complete campaign story. */
 .section-label { display:flex; justify-content:space-between; gap:24px; padding-top:18px; margin-bottom:56px; border-top:1px solid var(--line); color:var(--accent); }
 .section-label.label-light { color:#d9bca9; border-color:#6d625a; }
-.hero h1 { max-width:17ch; font-size:clamp(3.75rem,6.2vw,6.5rem); }
+.hero h1 { max-width:17ch; font-size:clamp(3.5rem,5.8vw,6rem); }
 .hero-actions { display:flex; align-items:center; gap:28px; flex-shrink:0; }
 .hero-actions .button { min-width:210px; }
 .hero-actions .text-link { white-space:nowrap; font-size:var(--text-small); }
@@ -810,7 +810,7 @@ summary,button { -webkit-user-select:none; user-select:none; }
 .contact-reassurance { max-width:44ch!important; margin:0 auto 34px; color:#bfb5ab!important; font-size:var(--text-caption)!important; }
 
 @media(max-width:1050px) {
- .hero h1 { max-width:16ch; font-size:clamp(3.5rem,6.6vw,5.5rem); }
+ .hero h1 { max-width:16ch; font-size:clamp(3.25rem,6.1vw,5.1rem); }
  .video-layout,.social-layout,.editorial-layout { gap:5%; }
  .video-art { height:600px; }
  .desktop-nav { gap:16px; }
@@ -840,7 +840,7 @@ summary,button { -webkit-user-select:none; user-select:none; }
 }
 @media(max-width:650px) {
  .section-label { margin-bottom:38px; }
- .hero h1 { max-width:10ch; font-size:clamp(2.65rem,12.8vw,3.65rem); }
+ .hero h1 { max-width:10ch; font-size:clamp(2.5rem,11.8vw,3.35rem); }
  .hero-actions { align-items:stretch; margin-top:22px; }
  .hero-actions .button { width:100%; min-width:0; }
  .hero-actions .text-link { width:max-content; }
