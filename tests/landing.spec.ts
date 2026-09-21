@@ -130,7 +130,11 @@ test("hero-ul mobil păstrează doar fotografia principală", async ({ page }) =
   );
   expect(titleSize).toBeLessThan(47);
   expect(titleLineHeight / titleSize).toBeGreaterThanOrEqual(0.97);
-  expect(await page.locator("#hero-title em").evaluate((emphasis) => emphasis.getClientRects().length)).toBe(1);
+  await expect(page.locator("#hero-title em")).toHaveCSS("white-space", "nowrap");
+  const showroom = page.locator(".hero-showroom");
+  await expect(showroom).toHaveText("showroom.");
+  await expect(showroom).toHaveCSS("background-image", /linear-gradient/);
+  expect(await showroom.evaluate((highlight) => highlight.getClientRects().length)).toBe(1);
 });
 
 test("secțiunile mari de servicii intră integral din stânga", async ({ page }) => {

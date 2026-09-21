@@ -15,7 +15,7 @@ export function Hero() {
       <div className="hero-title">
         <div>
           <p className="hero-kicker">Bridal Growth Campaigns</p>
-          <h1 id="hero-title">Transformăm colecția ta bridal<br />{" "}în conținut care aduce mirese <em>în showroom.</em></h1>
+          <h1 id="hero-title">Transformăm colecția ta bridal<br />{" "}în conținut care aduce mirese <em>în <span className="hero-showroom">showroom.</span></em></h1>
         </div>
       </div>
     </HeroParallax>
