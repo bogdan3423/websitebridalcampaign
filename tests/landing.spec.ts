@@ -114,6 +114,7 @@ test("hero-ul mobil păstrează doar fotografia principală", async ({ page }) =
 
   const images = page.locator(".hero-visual img");
   await expect(images).toHaveCount(1);
+  await expect(page.locator("#hero-title")).toContainText("bridal în conținut");
   await expect(images.nth(0)).toHaveAttribute("src", /IRI_4834/);
   await expect(images.nth(0)).toHaveCSS("filter", /grayscale\(1\)/);
   await expect(page.locator(".hero-primary-darklayer")).toHaveCSS("background-color", "rgba(15, 12, 11, 0.48)");
