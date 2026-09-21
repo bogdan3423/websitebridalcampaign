@@ -9,7 +9,6 @@ export function Hero() {
         <div className="hero-photo">
           <Image className="hero-mobile-primary" src={heroImage.src} alt={heroImage.alt} fill sizes="(max-width: 650px) 100vw, 58vw" loading="eager" fetchPriority="high" />
           <span className="hero-primary-darklayer" aria-hidden="true" />
-          <Image className="hero-mobile-secondary" src={heroSecondaryImage.src} alt="" fill sizes="100vw" loading="eager" />
         </div>
       </figure>
       <figure className="hero-detail"><div className="hero-photo"><Image src={heroSecondaryImage.src} alt={heroSecondaryImage.alt} fill sizes="42vw" loading="eager" /></div></figure>
