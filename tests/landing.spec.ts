@@ -63,11 +63,14 @@ for (const width of [375, 390, 430, 768, 1024, 1440]) {
 }
 
 test("meniul mobil și legăturile principale funcționează", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
+  await expect(page.locator(".menu-toggle span").last()).toHaveCSS("width", /16\.3|16\.32/);
   await page.getByRole("button", { name: "Deschide meniul" }).click();
   const menu = page.getByRole("dialog", { name: "Meniu de navigare" });
   await expect(menu).toBeVisible();
+  expect(await menu.evaluate((element) => getComputedStyle(element).transitionDuration)).not.toBe("0s");
   await expect(menu.getByRole("link", { name: "Servicii" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Video" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Galerie" })).toBeVisible();
