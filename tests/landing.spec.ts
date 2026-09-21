@@ -87,6 +87,19 @@ test("storytelling-ul păstrează scroll-ul nativ și reduced motion", async ({ 
   await expect(page.locator("#photo .story-step").first()).toHaveCSS("transition-duration", "0s");
 });
 
+test("storytelling-ul are animații discrete pe mobil", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const photo = page.locator("#photo");
+  await expect(photo).toHaveAttribute("data-story-ready", "true");
+  const steps = photo.locator(".story-step");
+  await steps.nth(1).evaluate((element) => element.scrollIntoView({ block: "center" }));
+  await expect(steps.nth(1)).toHaveAttribute("data-active", "true");
+  await expect(steps.nth(1)).toHaveCSS("opacity", "1");
+  await expect(steps.nth(1)).not.toHaveCSS("transition-duration", "0s");
+});
+
 test("formularul scurt pregătește mesajul pentru WhatsApp", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("Nume", { exact: false }).fill("Test local");
