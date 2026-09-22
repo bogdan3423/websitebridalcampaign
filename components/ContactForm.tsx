@@ -47,6 +47,11 @@ export function ContactForm() {
         signal: AbortSignal.timeout(15000),
       });
       if (!response.ok) throw new Error("Request failed");
+      window.dispatchEvent(
+        new CustomEvent("bridal:analytics", {
+          detail: { name: "form_submit_success", parameters: { form_name: "contact" } },
+        }),
+      );
       form.reset();
       setState("sent");
     } catch {
@@ -62,9 +67,11 @@ export function ContactForm() {
       <div className="contact-content" id="contact">
         <div className="contact-form-intro">
           <h2>Pregătim acum<br />ce va vedea mireasa<br /><em>în sezonul următor.</em></h2>
-          <p>Dacă vrei să vezi cum ar putea arăta o campanie construită pentru colecția salonului tău, discutăm 10 minute.</p>
+          <p>Dacă vrei să vezi cum ar putea arăta o campanie construită pentru colecția salonului tău, discutăm 10 minute. Lucrăm din Cluj-Napoca cu saloane din România.</p>
           <div className="contact-direct">
             <a className="text-link contact-whatsapp" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Scrie-ne pe WhatsApp <ArrowIcon /></a>
+            <a href={`tel:+${site.whatsapp}`}>{site.phoneDisplay}</a>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
           </div>
           <p className="contact-reassurance">Fără prezentări lungi. Vedem colecția, obiectivul și dacă are sens să lucrăm împreună.</p>
         </div>
@@ -85,7 +92,7 @@ export function ContactForm() {
 
           {state !== "idle" && state !== "sending" && (
             <div ref={statusRef} tabIndex={-1} className="form-status" role={state === "error" ? "alert" : "status"}>
-              {state === "sent" ? <><h4>Mulțumim. Mesajul a fost trimis.</h4><p>Revenim pentru o discuție scurtă despre colecție.</p></> : <><h4>Mesajul nu a putut fi trimis.</h4><p>Încearcă din nou sau <a href={whatsappUrl()}>scrie-ne direct pe WhatsApp</a>.</p></>}
+              {state === "sent" ? <><h3>Mulțumim. Mesajul a fost trimis.</h3><p>Revenim pentru o discuție scurtă despre colecție.</p></> : <><h3>Mesajul nu a putut fi trimis.</h3><p>Încearcă din nou sau <a href={whatsappUrl()}>scrie-ne direct pe WhatsApp</a>.</p></>}
             </div>
           )}
         </form>

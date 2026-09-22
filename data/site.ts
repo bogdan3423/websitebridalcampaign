@@ -1,6 +1,7 @@
 // ÎNLOCUIȚI AICI numele provizoriu, logo-ul și datele de contact.
 export const site = {
-  name: "thebridalconcept.ro",
+  name: "The Bridal Concept",
+  domain: "thebridalconcept.ro",
   logo: "", // Exemplu: /images/logo.svg. Fără fișier, afișăm numele tipografic.
   whatsapp: "40748030566", // Număr internațional, numai cifre: 407xxxxxxxx
   phoneDisplay: "+40 748 030 566",

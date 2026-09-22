@@ -11,7 +11,7 @@ export function Hero() {
           <span className="hero-primary-darklayer" aria-hidden="true" />
         </div>
       </figure>
-      <figure className="hero-detail"><div className="hero-photo"><Image src={heroSecondaryImage.src} alt={heroSecondaryImage.alt} fill sizes="42vw" loading="eager" /></div></figure>
+      <figure className="hero-detail"><div className="hero-photo"><Image src={heroSecondaryImage.src} alt={heroSecondaryImage.alt} fill sizes="42vw" /></div></figure>
       <div className="hero-title">
         <div>
           <p className="hero-kicker">Bridal Growth Campaigns</p>
@@ -20,7 +20,7 @@ export function Hero() {
       </div>
     </HeroParallax>
     <div className="hero-copy">
-      <p className="hero-promise">Foto editorial. Marketing video. Social media. Construim campania, producem conținutul și îl transformăm într-o prezență constantă online.</p>
+      <p className="hero-promise">Content și marketing pentru saloane de rochii de mireasă. Foto editorial, Reels, social media și lookbook-uri, produse în Cluj-Napoca pentru proiecte din România.</p>
       <div className="hero-actions"><a href="#contact" className="button button-dark">Discutăm 10 minute <ArrowIcon /></a><a href="#proces" className="text-link">Vezi cum lucrăm <ArrowIcon /></a></div>
     </div>
   </section>;

@@ -1,6 +1,6 @@
 # thebridalconcept.ro — Bridal Growth Campaigns
 
-Landing page editorial în română. Next.js App Router, TypeScript, Tailwind CSS 4, componente React și imagini locale WebP. Export static pentru găzduire simplă. Nu folosește trackere sau cookie-uri de marketing.
+Landing page editorial în română. Next.js App Router, TypeScript, Tailwind CSS 4, componente React și imagini locale WebP. Export static pentru găzduire simplă. Google Analytics este încărcat numai dacă este configurat explicit.
 
 ## Pornire
 
@@ -23,10 +23,17 @@ Build-ul public este în `out/`. Pentru testele end-to-end porniți mai întâi 
 ## Ce modifici
 
 - **Fotografii:** `data/gallery.ts` (inclusiv hero și selecția feed). Fișierele sunt în `public/images/`. Înlocuiți fotografiile provizorii înainte de a prezenta galeria ca portofoliu real.
-- **Nume, logo, WhatsApp, telefon, Instagram, email:** `data/site.ts`. Pentru logo, setați `logo: '/images/logo.svg'`; componenta este `components/Brand.tsx`. Emailul și Instagramul lipsesc intenționat până la furnizarea adreselor reale.
+- **Nume, logo, WhatsApp, telefon, Instagram, email:** `data/site.ts`. Pentru logo, setați `logo: '/images/logo.svg'`; componenta este `components/Brand.tsx`. Instagramul rămâne ascuns până la furnizarea unui URL real.
 - **Servicii și parcursul campaniei:** componentele din `components/`, ordonate în `app/page.tsx`.
 - **Culori, fonturi, spațiere:** `app/globals.css`, respectiv `app/layout.tsx`.
-- **SEO:** `app/layout.tsx`; datele structurate se află în `app/page.tsx`, iar domeniul canonic este `https://thebridalconcept.ro`.
+- **SEO:** `app/layout.tsx`; datele structurate se află în `app/page.tsx`, iar domeniul canonic este `https://thebridalconcept.ro/`.
+
+## SEO, Google Search Console și Analytics
+
+- `robots.txt` și `sitemap.xml` sunt generate de Next.js la build.
+- Pentru Google Search Console, creați o proprietate de tip **Domain** pentru `thebridalconcept.ro`, publicați în DNS înregistrarea TXT oferită de Google, apoi trimiteți `https://thebridalconcept.ro/sitemap.xml`.
+- Pentru Google Analytics 4, copiați `.env.example` în configurația mediului de build și setați `NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX`. Fără această variabilă nu se încarcă niciun script de tracking. Integrarea urmărește clickurile pe WhatsApp, telefon, email și CTA, plus formularul trimis cu succes.
+- Cardul social este `public/og.png`; identitatea de favicon este în `app/icon.svg`, `app/apple-icon.png` și `app/favicon.ico`.
 
 ## Formular
 

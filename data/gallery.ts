@@ -1,26 +1,26 @@
 const portfolioSelection = [
   {
-    filename: "IRI_4750",
+    filename: "rochie-mireasa-satin-pe-trepte",
     alt: "Modelă brunetă purtând o rochie de mireasă din satin, așezată pe trepte",
   },
   {
-    filename: "IRI_4994",
+    filename: "portret-modela-blonda-editorial",
     alt: "Portret editorial al unei modele blonde într-un interior elegant",
   },
   {
-    filename: "paulabridal-41",
+    filename: "modela-bruneta-voal-editorial",
     alt: "Portret al unei modele brunete purtând voal și rochie de mireasă",
   },
   {
-    filename: "IRI_4993",
+    filename: "rochie-mireasa-vazuta-din-spate",
     alt: "Modelă brunetă prezentând din spate o rochie de mireasă lungă",
   },
   {
-    filename: "IRI_5372",
+    filename: "rochie-mireasa-interior-clasic",
     alt: "Modelă blondă prezentând o rochie de mireasă într-un interior clasic",
   },
   {
-    filename: "paulabridal-35",
+    filename: "modela-rochie-mireasa-voal-trepte",
     alt: "Modelă brunetă cu voal lung fotografiată pe treptele unui interior elegant",
   },
 ] as const;
@@ -33,12 +33,12 @@ export const gallery = portfolioSelection.map((photo, index) => ({
 }));
 
 export const heroImage = {
-  src: "/images/portfolio/IRI_4834.webp",
+  src: "/images/portfolio/model-rochie-mireasa-satin-editorial.webp",
   alt: "Modelă brunetă într-o rochie de mireasă din satin, fotografiată pe trepte",
 };
 
 export const heroSecondaryImage = {
-  src: "/images/portfolio/IRI_5172.webp",
+  src: "/images/portfolio/modela-rochie-alba-manusi-editorial.webp",
   alt: "Modelă blondă într-o rochie albă și mănuși, fotografiată într-un interior elegant",
 };
 

@@ -3,8 +3,8 @@ import AxeBuilder from "@axe-core/playwright";
 
 test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("header.navbar > .brand")).toContainText("THEBRIDALCONCEPT.RO");
-  await expect(page.locator(".hero-detail img")).toHaveAttribute("src", /IRI_5172/);
+  await expect(page.locator("header.navbar > .brand")).toContainText("THE BRIDAL CONCEPT");
+  await expect(page.locator(".hero-detail img")).toHaveAttribute("src", /modela-rochie-alba-manusi-editorial/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Transformăm colecția ta bridal");
   await expect(page.getByRole("link", { name: "Discutăm 10 minute", exact: true }).first()).toHaveAttribute("href", "#contact");
   await expect(page.getByRole("link", { name: "Vezi cum lucrăm" })).toHaveAttribute("href", "#proces");
@@ -21,12 +21,48 @@ test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Când rochia devine imagine." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fiecare salon are o colecție diferită." })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Tu alegi rochiile. Noi construim campania./ })).toBeVisible();
-  await expect(page.locator("#photo .story-media").first().locator("img")).toHaveAttribute("src", /IRI_5399/);
+  await expect(page.locator("#photo .story-media").first().locator("img")).toHaveAttribute("src", /portret-bridal-voal-manusi/);
 
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/3[.]300|4[.]000|5[.]500|Alege pachetul|Compară toate detaliile/i);
   expect(body).not.toMatch(/Standard —|Plus —|Premium —|10 reels|15 reels|20 reels|30 zile/i);
   expect(body).not.toMatch(/garantăm programări|vei vinde mai multe|aducem [0-9]+ mirese/i);
+});
+
+test("metadatele și datele structurate descriu corect serviciul", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page).toHaveTitle("Marketing pentru saloane de rochii de mireasă | The Bridal Concept");
+  await expect(page.locator("meta[name='description']")).toHaveAttribute("content", /fotografie editorială, Reels, social media și bridal lookbook/);
+  await expect(page.locator("link[rel='canonical']")).toHaveAttribute("href", "https://thebridalconcept.ro");
+  await expect(page.locator("meta[property='og:url']")).toHaveAttribute("content", "https://thebridalconcept.ro");
+  await expect(page.locator("meta[property='og:site_name']")).toHaveAttribute("content", "The Bridal Concept");
+  await expect(page.locator("meta[property='og:image']").first()).toHaveAttribute("content", "https://thebridalconcept.ro/og.png");
+  await expect(page.locator("meta[name='twitter:card']")).toHaveAttribute("content", "summary_large_image");
+  await expect(page.locator("meta[name='robots']")).toHaveAttribute("content", /index, follow/);
+  await expect(page.locator("h1")).toHaveCount(1);
+
+  const schema = JSON.parse(await page.locator("script[type='application/ld+json']").textContent() ?? "{}");
+  expect(schema["@graph"].map((entry: { "@type": string }) => entry["@type"])).toEqual([
+    "Organization",
+    "WebSite",
+    "Service",
+  ]);
+});
+
+test("robots, sitemap și pagina 404 sunt disponibile", async ({ page, request }) => {
+  const robots = await request.get("/robots.txt");
+  expect(robots.ok()).toBeTruthy();
+  expect(await robots.text()).toContain("Sitemap: https://thebridalconcept.ro/sitemap.xml");
+
+  const sitemap = await request.get("/sitemap.xml");
+  expect(sitemap.ok()).toBeTruthy();
+  expect(await sitemap.text()).toContain("https://thebridalconcept.ro/");
+
+  const missing = await page.goto("/pagina-care-nu-exista");
+  expect(missing?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Pagina aceasta nu mai este aici.");
+  await expect(page.getByRole("link", { name: /Înapoi la pagina principală/ })).toHaveAttribute("href", "/");
 });
 
 test("navigarea indică numai secțiuni existente", async ({ page }) => {
@@ -124,7 +160,7 @@ test("hero-ul mobil păstrează doar fotografia principală", async ({ page }) =
   const images = page.locator(".hero-visual img");
   await expect(images).toHaveCount(1);
   await expect(page.locator("#hero-title")).toContainText("bridal în conținut");
-  await expect(images.nth(0)).toHaveAttribute("src", /IRI_4834/);
+  await expect(images.nth(0)).toHaveAttribute("src", /model-rochie-mireasa-satin-editorial/);
   await expect(images.nth(0)).toHaveCSS("filter", /grayscale\(1\)/);
   await expect(page.locator(".hero-primary-darklayer")).toHaveCSS("background-color", "rgba(15, 12, 11, 0.48)");
   await expect(images.nth(0)).toHaveCSS("animation-name", "none");
@@ -204,7 +240,7 @@ test("galeria și exemplele interactive rămân funcționale", async ({ page }) 
 test("pagina respectă regulile principale de accesibilitate", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "ro");
-  await expect(page).toHaveTitle(/Campanii de conținut/);
+  await expect(page).toHaveTitle(/Marketing pentru saloane de rochii de mireasă/);
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(results.violations.map((violation) => ({ id: violation.id, nodes: violation.nodes.map((node) => node.target) }))).toEqual([]);
 });

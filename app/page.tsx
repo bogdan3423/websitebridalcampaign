@@ -12,15 +12,50 @@ import { site } from "@/data/site";
 export default function Home() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: site.name,
-    url: site.url,
-    telephone: `+${site.whatsapp}`,
-    description:
-      "Campanii complete de conținut pentru saloane de rochii de mireasă: fotografie editorială, marketing video, social media și editorial bridal.",
-    areaServed: { "@type": "City", name: "Cluj-Napoca" },
-    ...(site.email ? { email: site.email } : {}),
-    ...(site.instagram ? { sameAs: [site.instagram] } : {}),
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site.url}/#organization`,
+        name: site.name,
+        url: `${site.url}/`,
+        logo: `${site.url}/icon.svg`,
+        description:
+          "Studio de content și marketing pentru saloane de rochii de mireasă din România.",
+        telephone: `+${site.whatsapp}`,
+        email: site.email,
+        areaServed: [
+          { "@type": "City", name: "Cluj-Napoca" },
+          { "@type": "Country", name: "România" },
+        ],
+        ...(site.instagram ? { sameAs: [site.instagram] } : {}),
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        name: site.name,
+        url: `${site.url}/`,
+        inLanguage: "ro-RO",
+        publisher: { "@id": `${site.url}/#organization` },
+      },
+      {
+        "@type": "Service",
+        "@id": `${site.url}/#service`,
+        name: "Content și marketing pentru saloane de rochii de mireasă",
+        description:
+          "Campanii de content pentru saloane bridal: fotografie editorială, Reels, social media și bridal lookbook.",
+        serviceType: [
+          "Fotografie editorială bridal",
+          "Marketing video și Reels",
+          "Social media pentru saloane bridal",
+          "Bridal lookbook",
+        ],
+        provider: { "@id": `${site.url}/#organization` },
+        areaServed: [
+          { "@type": "City", name: "Cluj-Napoca" },
+          { "@type": "Country", name: "România" },
+        ],
+      },
+    ],
   };
   return (
     <>
