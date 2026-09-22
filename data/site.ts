@@ -1,13 +1,13 @@
 // ÎNLOCUIȚI AICI numele provizoriu, logo-ul și datele de contact.
 export const site = {
-  name: "impactomedia.ro",
+  name: "thebridalconcept.ro",
   logo: "", // Exemplu: /images/logo.svg. Fără fișier, afișăm numele tipografic.
   whatsapp: "40748030566", // Număr internațional, numai cifre: 407xxxxxxxx
   phoneDisplay: "+40 748 030 566",
   instagram: "", // URL complet
-  email: "contact@impactomedia.ro",
-  formEndpoint: "https://formsubmit.co/ajax/contact@impactomedia.ro",
-  url: "https://bridal-growth-cluj.rusbogdan3423.chatgpt.site",
+  email: "contact@thebridalconcept.ro",
+  formEndpoint: "https://formsubmit.co/ajax/contact@thebridalconcept.ro",
+  url: "https://thebridalconcept.ro",
 };
 export function whatsappUrl(
   message = "Bună! Aș vrea să discutăm despre promovarea salonului meu.",

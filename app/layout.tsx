@@ -14,7 +14,7 @@ const sans = Manrope({
   display: "swap",
 });
 const title =
-  "Campanii de conținut pentru saloane bridal | Cluj-Napoca";
+  "Campanii de conținut bridal | The Bridal Concept";
 const description =
   "Transformăm colecțiile bridal în campanii complete: fotografie editorială, marketing video, social media și materiale editoriale pentru salon.";
 export const metadata: Metadata = {

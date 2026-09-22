@@ -3,6 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 
 test("mesajul și parcursul comercial sunt clare", async ({ page }) => {
   await page.goto("/");
+  await expect(page.locator("header.navbar > .brand")).toContainText("THEBRIDALCONCEPT.RO");
   await expect(page.locator(".hero-detail img")).toHaveAttribute("src", /IRI_5172/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Transformăm colecția ta bridal");
   await expect(page.getByRole("link", { name: "Discutăm 10 minute", exact: true }).first()).toHaveAttribute("href", "#contact");
@@ -180,7 +181,7 @@ test("formularul scurt trimite solicitarea prin endpoint-ul de email", async ({ 
     Telefon: "0748030566",
     "Instagram / website": "@salondetest",
     Mesaj: "Vrem să promovăm colecția nouă.",
-    _subject: "Solicitare nouă — formular impactomedia.ro",
+    _subject: "Solicitare nouă — formular thebridalconcept.ro",
     _template: "table",
     _captcha: "false",
   });

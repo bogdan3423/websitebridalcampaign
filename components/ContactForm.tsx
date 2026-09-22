@@ -38,7 +38,7 @@ export function ContactForm() {
           Telefon: values.phone,
           "Instagram / website": values.website || "—",
           Mesaj: values.message || "—",
-          _subject: "Solicitare nouă — formular impactomedia.ro",
+          _subject: "Solicitare nouă — formular thebridalconcept.ro",
           _template: "table",
           _captcha: "false",
           _honey: values._honey,
