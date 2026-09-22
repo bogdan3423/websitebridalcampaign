@@ -33,7 +33,7 @@ Build-ul public este în `out/`. Pentru testele end-to-end porniți mai întâi 
 - `robots.txt` și `sitemap.xml` sunt generate de Next.js la build.
 - Pentru Google Search Console, creați o proprietate de tip **Domain** pentru `thebridalconcept.ro`, publicați în DNS înregistrarea TXT oferită de Google, apoi trimiteți `https://thebridalconcept.ro/sitemap.xml`.
 - Pentru Google Analytics 4, copiați `.env.example` în configurația mediului de build și setați `NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX`. Fără această variabilă nu se încarcă niciun script de tracking. Integrarea urmărește clickurile pe WhatsApp, telefon, email și CTA, plus formularul trimis cu succes.
-- Cardul social este `public/og.png`; identitatea de favicon este în `app/icon.svg`, `app/apple-icon.png` și `app/favicon.ico`.
+- Cardul social este `public/og.png`; identitatea de favicon este în `app/icon.png`, `app/apple-icon.png` și `app/favicon.ico`.
 
 ## Formular
 

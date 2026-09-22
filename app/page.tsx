@@ -18,7 +18,7 @@ export default function Home() {
         "@id": `${site.url}/#organization`,
         name: site.name,
         url: `${site.url}/`,
-        logo: `${site.url}/icon.svg`,
+        logo: `${site.url}/icon.png`,
         description:
           "Studio de content și marketing pentru saloane de rochii de mireasă din România.",
         telephone: `+${site.whatsapp}`,
