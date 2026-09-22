@@ -5,8 +5,8 @@ export const site = {
   whatsapp: "40748030566", // Număr internațional, numai cifre: 407xxxxxxxx
   phoneDisplay: "+40 748 030 566",
   instagram: "", // URL complet
-  email: "",
-  formEndpoint: "", // Endpoint HTTPS care acceptă POST JSON. Lăsați gol pentru WhatsApp / email.
+  email: "contact@impactomedia.ro",
+  formEndpoint: "https://formsubmit.co/ajax/contact@impactomedia.ro",
   url: "https://bridal-growth-cluj.rusbogdan3423.chatgpt.site",
 };
 export function whatsappUrl(

@@ -160,7 +160,12 @@ test("secțiunile mari de servicii intră integral din stânga", async ({ page }
   await expect(photo.locator(":scope > .section-shell")).toHaveCSS("opacity", "1");
 });
 
-test("formularul scurt pregătește mesajul pentru WhatsApp", async ({ page }) => {
+test("formularul scurt trimite solicitarea prin endpoint-ul de email", async ({ page }) => {
+  let submission: Record<string, string> | undefined;
+  await page.route("https://formsubmit.co/ajax/**", async (route) => {
+    submission = route.request().postDataJSON() as Record<string, string>;
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ success: true }) });
+  });
   await page.goto("/");
   await page.getByLabel("Nume", { exact: false }).fill("Test local");
   await page.getByRole("textbox", { name: "Salon *", exact: true }).fill("Salon de test");
@@ -168,11 +173,17 @@ test("formularul scurt pregătește mesajul pentru WhatsApp", async ({ page }) =
   await page.getByLabel("Instagram / website").fill("@salondetest");
   await page.getByLabel("Mesaj (opțional)").fill("Vrem să promovăm colecția nouă.");
   await page.getByRole("button", { name: "Vreau să discutăm" }).click();
-  await expect(page.getByRole("status")).toContainText("Mesajul este pregătit.");
-  const href = await page.getByRole("link", { name: "Continuă în WhatsApp" }).getAttribute("href");
-  expect(href).toContain("https://wa.me/40748030566?text=");
-  expect(decodeURIComponent(href!)).toContain("Salon de test");
-  expect(decodeURIComponent(href!)).not.toContain("Pachet:");
+  await expect(page.getByRole("status")).toContainText("Mesajul a fost trimis.");
+  expect(submission).toMatchObject({
+    Nume: "Test local",
+    Salon: "Salon de test",
+    Telefon: "0748030566",
+    "Instagram / website": "@salondetest",
+    Mesaj: "Vrem să promovăm colecția nouă.",
+    _subject: "Solicitare nouă — formular impactomedia.ro",
+    _template: "table",
+    _captcha: "false",
+  });
 });
 
 test("galeria și exemplele interactive rămân funcționale", async ({ page }) => {

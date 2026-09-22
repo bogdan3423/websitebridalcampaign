@@ -7,40 +7,49 @@ import { site, whatsappUrl } from "@/data/site";
 import { ArrowIcon } from "./ArrowIcon";
 
 export function ContactForm() {
-  const [state, setState] = useState<"idle" | "sending" | "prepared" | "sent" | "error">("idle");
-  const [contactLink, setContactLink] = useState("");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const statusRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (state === "prepared" || state === "sent" || state === "error") statusRef.current?.focus();
+    if (state === "sent" || state === "error") statusRef.current?.focus();
   }, [state]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const values = Object.fromEntries(new FormData(event.currentTarget).entries());
-    const text = `Bună! Aș vrea să discutăm 10 minute despre promovarea salonului meu.\n\nNume: ${values.name}\nSalon: ${values.salon}\nTelefon: ${values.phone}\nInstagram / website: ${values.website || "—"}\nMesaj: ${values.message || "—"}`;
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form).entries());
 
-    if (site.formEndpoint) {
-      setState("sending");
-      try {
-        const response = await fetch(site.formEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(values),
-          signal: AbortSignal.timeout(15000),
-        });
-        if (!response.ok) throw new Error("Request failed");
-        setState("sent");
-      } catch {
-        setState("error");
-      }
+    if (!site.formEndpoint) {
+      setState("error");
       return;
     }
 
-    if (site.whatsapp || site.email) {
-      setContactLink(site.whatsapp ? whatsappUrl(text) : `mailto:${site.email}?subject=${encodeURIComponent("Discuție campanie bridal")}&body=${encodeURIComponent(text)}`);
-      setState("prepared");
-    } else {
+    setState("sending");
+    try {
+      const response = await fetch(site.formEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Nume: values.name,
+          Salon: values.salon,
+          Telefon: values.phone,
+          "Instagram / website": values.website || "—",
+          Mesaj: values.message || "—",
+          _subject: "Solicitare nouă — formular impactomedia.ro",
+          _template: "table",
+          _captcha: "false",
+          _honey: values._honey,
+          _url: window.location.href,
+        }),
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!response.ok) throw new Error("Request failed");
+      form.reset();
+      setState("sent");
+    } catch {
       setState("error");
     }
   }
@@ -61,6 +70,7 @@ export function ContactForm() {
         </div>
 
         <form className="contact-form" onSubmit={submit} onChange={() => { if (state !== "sending") setState("idle"); }}>
+          <label className="form-honeypot" aria-hidden="true">Nu completa acest câmp<input name="_honey" tabIndex={-1} autoComplete="off" /></label>
           <div className="form-fields">
             <label>Nume <span>*</span><input name="name" autoComplete="name" required maxLength={100} /></label>
             <label>Salon <span>*</span><input name="salon" autoComplete="organization" required maxLength={150} /></label>
@@ -69,13 +79,13 @@ export function ContactForm() {
             <label className="field-full">Mesaj (opțional)<textarea name="message" maxLength={2000} rows={3} placeholder="Ce vrei să promovezi din colecția ta?" /></label>
           </div>
           <div className="form-bottom">
-            <p>{site.formEndpoint ? "Folosim datele doar pentru a răspunde cererii tale." : "Mesajul se pregătește aici. Îl trimiți apoi prin WhatsApp."}</p>
+            <p>Folosim datele doar pentru a răspunde cererii tale.</p>
             <button className="button button-light" type="submit" disabled={state === "sending"}>{state === "sending" ? "Se trimite…" : "Vreau să discutăm"}<ArrowIcon /></button>
           </div>
 
           {state !== "idle" && state !== "sending" && (
             <div ref={statusRef} tabIndex={-1} className="form-status" role={state === "error" ? "alert" : "status"}>
-              {state === "prepared" ? <><h4>Mesajul este pregătit.</h4><p>Deschide conversația și trimite-l când ești gata.</p><a className="text-link" href={contactLink} target="_blank" rel="noopener noreferrer">{site.whatsapp ? "Continuă în WhatsApp" : "Continuă prin email"} <ArrowIcon /></a></> : state === "sent" ? <><h4>Mulțumim. Mesajul a fost trimis.</h4><p>Revenim pentru o discuție scurtă despre colecție.</p></> : <><h4>Mesajul nu a putut fi trimis.</h4><p>Încearcă din nou sau <a href={whatsappUrl()}>scrie-ne direct pe WhatsApp</a>.</p></>}
+              {state === "sent" ? <><h4>Mulțumim. Mesajul a fost trimis.</h4><p>Revenim pentru o discuție scurtă despre colecție.</p></> : <><h4>Mesajul nu a putut fi trimis.</h4><p>Încearcă din nou sau <a href={whatsappUrl()}>scrie-ne direct pe WhatsApp</a>.</p></>}
             </div>
           )}
         </form>

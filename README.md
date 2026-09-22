@@ -30,9 +30,9 @@ Build-ul public este în `out/`. Pentru testele end-to-end porniți mai întâi 
 
 ## Formular
 
-Formularul validează datele și pregătește un mesaj către **+40 748 030 566**. Vizitatorul apasă apoi **Continuă în WhatsApp** și trimite mesajul în aplicație. Nu afișăm o confirmare falsă de trimitere și nu stocăm local datele introduse.
+Formularul validează datele și le trimite prin AJAX către FormSubmit, care livrează solicitările la **contact@impactomedia.ro**. Integrarea include un câmp honeypot anti-spam, stări clare de trimitere/succes/eroare și păstrează WhatsApp ca metodă alternativă de contact. Formularul nu stochează local datele introduse.
 
-Pentru trimitere directă, configurați `site.formEndpoint` cu un endpoint HTTPS care acceptă JSON prin POST și răspunde cu un cod 2xx numai după acceptarea cererii. Endpoint-ul trebuie să implementeze validare pe server, protecție anti-spam și livrarea mesajului. Exportul static nu include un serviciu de email.
+La prima folosire, FormSubmit trimite un email de activare la adresa destinatară. Linkul din acel email trebuie confirmat o singură dată înainte ca mesajele să fie livrate normal.
 
 ## Imagini
 

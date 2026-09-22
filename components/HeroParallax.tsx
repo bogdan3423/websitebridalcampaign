@@ -20,12 +20,14 @@ export function HeroParallax({ children }: { children: ReactNode }) {
       raf = 0;
       const progress = Math.min(1, Math.max(0, window.scrollY / travelDistance));
       photos.forEach((photo, index) => {
-        // 12% overscan on each side keeps a 10% horizontal drift inside the frame.
-        const travel = Math.min(96, (widths[index] || 0) * 0.1);
+        const isPrimaryDesktopPhoto = index === 0 && window.innerWidth > 650;
+        // The primary photograph uses a gentler zoom and therefore a shorter drift.
+        const travel = Math.min(96, (widths[index] || 0) * (isPrimaryDesktopPhoto ? 0.045 : 0.1));
         const direction = index === 0 ? -1 : 1;
+        const scale = isPrimaryDesktopPhoto ? 1.12 : 1.24;
         photo.style.transform = motion.matches
           ? "none"
-          : `translate3d(${(progress * travel * direction).toFixed(2)}px, 0, 0) scale(1.24)`;
+          : `translate3d(${(progress * travel * direction).toFixed(2)}px, 0, 0) scale(${scale})`;
       });
     }
 
